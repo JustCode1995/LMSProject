@@ -1,4 +1,4 @@
-Grooup Members:
+Group Members:
 
 Nicolas Gamez
 Hoa Nguyen
