@@ -1,0 +1,14 @@
+C:\Users\Nickl\source\repos\db1\db1\bin\Debug\db1.exe.config
+C:\Users\Nickl\source\repos\db1\db1\bin\Debug\db1.exe
+C:\Users\Nickl\source\repos\db1\db1\bin\Debug\db1.pdb
+C:\Users\Nickl\source\repos\db1\db1\bin\Debug\db1.xml
+C:\Users\Nickl\source\repos\db1\db1\obj\Debug\db1.Resources.resources
+C:\Users\Nickl\source\repos\db1\db1\obj\Debug\db1.vbproj.GenerateResource.cache
+C:\Users\Nickl\source\repos\db1\db1\obj\Debug\db1.vbproj.CoreCompileInputs.cache
+C:\Users\Nickl\source\repos\db1\db1\obj\Debug\db1.exe
+C:\Users\Nickl\source\repos\db1\db1\obj\Debug\db1.xml
+C:\Users\Nickl\source\repos\db1\db1\obj\Debug\db1.pdb
+C:\Users\Nickl\source\repos\db1\db1\obj\Debug\db1.vbprojAssemblyReference.cache
+C:\Users\Nickl\source\repos\db1\db1\obj\Debug\db1.Admin.resources
+C:\Users\Nickl\source\repos\db1\db1\obj\Debug\db1.Welcome.resources
+C:\Users\Nickl\source\repos\db1\db1\obj\Debug\db1.Form1.resources
