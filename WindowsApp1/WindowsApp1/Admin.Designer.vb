@@ -25,6 +25,9 @@ Partial Class Admin
         Me.components = New System.ComponentModel.Container()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.Add = New System.Windows.Forms.TabPage()
         Me.txtStudentID = New System.Windows.Forms.TextBox()
         Me.txtFname = New System.Windows.Forms.TextBox()
@@ -49,6 +52,7 @@ Partial Class Admin
         Me.TableAdapterManager = New WindowsApp1.LMSDBDataSetTableAdapters.TableAdapterManager()
         Me.StudentBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.TabControl1.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
         Me.Add.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         CType(Me.StudentDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -70,6 +74,9 @@ Partial Class Admin
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.Label5)
+        Me.TabPage1.Controls.Add(Me.TextBox1)
+        Me.TabPage1.Controls.Add(Me.Button4)
         Me.TabPage1.Location = New System.Drawing.Point(10, 47)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
@@ -77,6 +84,31 @@ Partial Class Admin
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Search"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(124, 87)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(143, 29)
+        Me.Label5.TabIndex = 2
+        Me.Label5.Text = "Student ID#:"
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(285, 87)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(271, 35)
+        Me.TextBox1.TabIndex = 1
+        '
+        'Button4
+        '
+        Me.Button4.Location = New System.Drawing.Point(583, 87)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(189, 52)
+        Me.Button4.TabIndex = 0
+        Me.Button4.Text = "Search"
+        Me.Button4.UseVisualStyleBackColor = True
         '
         'Add
         '
@@ -255,6 +287,7 @@ Partial Class Admin
         'TableAdapterManager
         '
         Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager.Student1TableAdapter = Nothing
         Me.TableAdapterManager.StudentTableAdapter = Me.StudentTableAdapter
         Me.TableAdapterManager.trace_xe_action_mapTableAdapter = Nothing
         Me.TableAdapterManager.trace_xe_event_mapTableAdapter = Nothing
@@ -274,6 +307,8 @@ Partial Class Admin
         Me.Name = "Admin"
         Me.Text = "Admin"
         Me.TabControl1.ResumeLayout(False)
+        Me.TabPage1.ResumeLayout(False)
+        Me.TabPage1.PerformLayout()
         Me.Add.ResumeLayout(False)
         Me.Add.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
@@ -323,4 +358,7 @@ Partial Class Admin
     Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
     Friend WithEvents Button3 As Button
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Button4 As Button
+    Friend WithEvents Label5 As Label
 End Class

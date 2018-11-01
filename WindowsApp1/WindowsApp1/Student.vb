@@ -1,4 +1,4 @@
-﻿Public Class Form1
+﻿Public Class Student
     Private Sub Student1BindingNavigatorSaveItem_Click(sender As Object, e As EventArgs) Handles Student1BindingNavigatorSaveItem.Click
         Me.Validate()
         Me.Student1BindingSource.EndEdit()

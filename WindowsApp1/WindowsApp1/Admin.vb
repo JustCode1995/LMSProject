@@ -19,4 +19,11 @@
         Me.StudentTableAdapter.Fill(Me.LMSDBDataSet.Student) 'Fills Student Table
 
     End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim searchQuery As String
+        'ExecuteQuery
+
+
+    End Sub
 End Class
