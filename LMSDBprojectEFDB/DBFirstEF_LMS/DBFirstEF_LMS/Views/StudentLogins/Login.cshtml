@@ -1,0 +1,19 @@
+﻿@model DBFirstEF_LMS.Models.StudentLogin
+
+@{
+    ViewBag.Title = "Login";
+}
+
+@ViewBag.LoginSuccess
+
+<br /><br />
+@using (Html.BeginForm("Login", "StudentLogins", FormMethod.Post))
+{
+    @Html.Label("Username: ")
+    <input type="text" name="studentUser" id="studentUser" />
+    <br />
+    @Html.Label("Password: ")
+    <input type="text" name="studentPass" id="studentPass" />
+    <br />
+    <input type="submit" value="Login" />
+}

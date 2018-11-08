@@ -25,9 +25,11 @@ namespace DBFirstEF_LMS.Models
         public string first_name { get; set; }
         public string last_name { get; set; }
         public System.DateTime date_hired { get; set; }
+        public Nullable<int> access_level { get; set; }
     
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Section> Sections { get; set; }
+        public virtual StaffLogin StaffLogin { get; set; }
     }
 }

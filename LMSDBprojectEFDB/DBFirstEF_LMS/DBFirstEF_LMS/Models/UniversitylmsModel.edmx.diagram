@@ -19,6 +19,10 @@
         <AssociationConnector Association="LMSDBModel.FK__Registere__stude__71D1E811" ManuallyRouted="false" />
         <AssociationConnector Association="LMSDBModel.FK__Section__semeste__693CA210" ManuallyRouted="false" />
         <AssociationConnector Association="LMSDBModel.FK__Section__teacher__68487DD7" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LMSDBModel.StaffLogin" Width="1.5" PointX="5.25" PointY="8.625" />
+        <EntityTypeShape EntityType="LMSDBModel.StudentLogin" Width="1.5" PointX="7.5" PointY="1" />
+        <AssociationConnector Association="LMSDBModel.FK__StaffLogi__staff__114A936A" />
+        <AssociationConnector Association="LMSDBModel.FK__StudentLo__stude__0B91BA14" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
