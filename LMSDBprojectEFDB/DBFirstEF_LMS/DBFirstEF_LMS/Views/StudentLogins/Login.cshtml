@@ -9,11 +9,11 @@
 <br /><br />
 @using (Html.BeginForm("Login", "StudentLogins", FormMethod.Post))
 {
-    @Html.Label("Username: ")
-    <input type="text" name="studentUser" id="studentUser" />
+    @Html.Label("Student ID: ")
+    <input type="text" name="studentID" id="studentID" />
     <br />
     @Html.Label("Password: ")
-    <input type="text" name="studentPass" id="studentPass" />
+    <input type="password" name="studentPass" id="studentPass" />
     <br />
     <input type="submit" value="Login" />
 }

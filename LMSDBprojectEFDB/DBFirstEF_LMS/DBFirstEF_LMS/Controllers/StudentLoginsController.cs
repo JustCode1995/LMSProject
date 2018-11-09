@@ -136,11 +136,38 @@ namespace DBFirstEF_LMS.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(string userName, string userPass)
+        public ActionResult Login(string studentID, string studentPass)
         {
-            string u = userName;
-            string p = userPass;
-            ViewBag.LoginSuccess = "Success";
+            string u = studentID;
+            string p = studentPass;
+
+
+            if (studentID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            StudentLogin studentLogin = db.StudentLogins.Find(Convert.ToInt32(studentID));
+
+            if (studentLogin == null)
+            {
+                ViewBag.LoginSuccess = "Please Retry, please type again.";
+            }
+            else
+            {
+
+                if (studentPass == studentLogin.student_pwd)
+                {
+                    ViewBag.LoginSuccess = "Success";
+
+                }
+                else
+                {
+                    ViewBag.LoginSuccess = "Failed";
+
+                }
+            }
+
+
             return View();
         }
 
