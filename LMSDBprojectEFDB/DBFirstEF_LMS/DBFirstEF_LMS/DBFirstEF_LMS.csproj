@@ -215,7 +215,6 @@
     <Content Include="Views\StudentLogins\Details.cshtml" />
     <Content Include="Views\StudentLogins\Edit.cshtml" />
     <Content Include="Views\StudentLogins\Index.cshtml" />
-    <Content Include="Views\StudentLoginPage1.cshtml" />
     <Content Include="Views\StudentLogins\Login.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Sections\Create.cshtml" />
@@ -223,6 +222,7 @@
     <Content Include="Views\Sections\Details.cshtml" />
     <Content Include="Views\Sections\Edit.cshtml" />
     <Content Include="Views\Sections\Index.cshtml" />
+    <Content Include="Views\Students\ShowStudentClasses.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
