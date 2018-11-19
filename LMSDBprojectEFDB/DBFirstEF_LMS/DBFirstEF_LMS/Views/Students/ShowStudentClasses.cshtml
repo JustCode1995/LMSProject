@@ -3,51 +3,102 @@
     ViewBag.Title = "Show student classes";
 }
 
+@*looks good from here
+    <h2>
+        Courses for @Html.DisplayFor(model => model.Fname) @Html.DisplayFor(model => model.Lname)
+    </h2>
 
-<h2>
-    Courses for @Html.DisplayFor(model => model.Fname) @Html.DisplayFor(model => model.Lname)
-</h2>
+    @foreach (var secn in ViewBag.Sections)
+    {
+        <tr>
+            <td>
+                @secn.section_id
+            </td>
+        </tr>
 
-@foreach (var section in ViewBag.Section)
-{
+    }
+    @foreach (var course in ViewBag.Courses)
+    {
+       <tr>
+        <td>
+            @course.course_id
+        </td>
+           <td>
+               @course.course_name
+           </td>
+           <br />
+           <td>
+               @course.course_desc
+           </td>
+       </tr>
+    }
+    end looks good*@
+
+
+
+
+
+<table>
     <tr>
         <td>
-            @
+            <table>
+                <thead>
+                    <tr>
+                        <td>column 1 header 1</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var secn in ViewBag.Sections)
+                    {
+                        <tr>
+                            <td>
+                                @secn.section_id
+                            </td>
+                        </tr>
+
+                    }
+                    @*<tr>
+                            <td>column 1 row 1</td>
+                        </tr>
+                        <tr>
+                            <td>column 1 row 2</td>
+                        </tr>*@
+                </tbody>
+            </table>
+        </td>
+        <td>
+            <table>
+                <thead>
+                    <tr>
+                        <td>column 2 header 1</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var course in ViewBag.Courses)
+                    {
+                        <tr>
+                            <td>
+                                @course.course_id
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @course.course_name
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                @course.course_desc
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
         </td>
     </tr>
-
-}
-@foreach (var course in ViewBag.Courses)
-{
-   <tr>
-    <td>
-        @course.course_id
-    </td>
-       <td>
-           @course.course_name
-       </td>
-       <br />
-       <td>
-           @course.course_desc
-       </td>
-   </tr> 
-}
-
-
-
-
-
-@*@model DBFirstEF_LMS.Models.Student
-
-
-    @{
-        ViewBag.Title = "ShowStudentClasses";
-    }
-
-    <h2>ShowStudentClasses</h2>*@
-
-
-
+</table>
 
 
 
