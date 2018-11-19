@@ -1,10 +1,50 @@
 ﻿@model DBFirstEF_LMS.Models.Student
-
 @{
-    ViewBag.Title = "ShowStudentClasses";
+    ViewBag.Title = "Show student classes";
 }
 
-<h2>ShowStudentClasses</h2>
+
+<h2>
+    Courses for @Html.DisplayFor(model => model.Fname) @Html.DisplayFor(model => model.Lname)
+</h2>
+
+@foreach (var section in ViewBag.Section)
+{
+    <tr>
+        <td>
+            @
+        </td>
+    </tr>
+
+}
+@foreach (var course in ViewBag.Courses)
+{
+   <tr>
+    <td>
+        @course.course_id
+    </td>
+       <td>
+           @course.course_name
+       </td>
+       <br />
+       <td>
+           @course.course_desc
+       </td>
+   </tr> 
+}
+
+
+
+
+
+@*@model DBFirstEF_LMS.Models.Student
+
+
+    @{
+        ViewBag.Title = "ShowStudentClasses";
+    }
+
+    <h2>ShowStudentClasses</h2>*@
 
 
 
