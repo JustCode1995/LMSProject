@@ -150,23 +150,21 @@ namespace DBFirstEF_LMS.Controllers
 
             if (studentLogin == null)
             {
-                ViewBag.LoginSuccess = "Please Retry, please type again.";
+                ViewBag.LoginSuccess = "Invalid login, please try agian.";
             }
             else
             {
-
                 if (studentPass == studentLogin.student_pwd)
                 {
                     ViewBag.LoginSuccess = "Success";
-
+                    System.Web.HttpContext.Current.Session["loginSessionVar"] = studentID;
+                    return View("Students/ShowStudentClasses", new { id = studentID });
                 }
                 else
                 {
-                    ViewBag.LoginSuccess = "Failed";
-
+                    ViewBag.LoginSuccess = "Login failed, please check password.";
                 }
             }
-
 
             return View();
         }

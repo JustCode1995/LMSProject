@@ -36,8 +36,6 @@
 
 
 
-
-
 <table>
     <tr>
         <td>
@@ -57,12 +55,6 @@
                         </tr>
 
                     }
-                    @*<tr>
-                            <td>column 1 row 1</td>
-                        </tr>
-                        <tr>
-                            <td>column 1 row 2</td>
-                        </tr>*@
                 </tbody>
             </table>
         </td>
@@ -81,19 +73,42 @@
                                 @course.course_id
                             </td>
                         </tr>
+                    }
+                </tbody>
+            </table>
+        </td>
+        <td>
+            <table>
+                <thead>
+                    <tr>
+                        <td>column 3 header 1</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var course in ViewBag.Courses)
+                    {
                         <tr>
                             <td>
                                 @course.course_name
                             </td>
                         </tr>
-
-                        <tr>
-                            <td>
-                                @course.course_desc
-                            </td>
-                        </tr>
-
                     }
+                </tbody>
+            </table>
+        </td>
+        <td>
+            <table>
+                <thead>
+                    <tr>
+                        <td>column 4 header 1</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("Action","Controller")"> <input type="button" value="Class Details" /> </a>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </td>
