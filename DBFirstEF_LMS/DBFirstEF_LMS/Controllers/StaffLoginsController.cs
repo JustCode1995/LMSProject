@@ -10,112 +10,112 @@ using DBFirstEF_LMS.Models;
 
 namespace DBFirstEF_LMS.Controllers
 {
-    public class StudentLoginsController : Controller
+    public class StaffLoginsController : Controller
     {
         private LMSDBEntities1 db = new LMSDBEntities1();
 
-        // GET: StudentLogins
+        // GET: StaffLogins
         public ActionResult Index()
         {
-            var studentLogins = db.StudentLogins.Include(s => s.Student);
-            return View(studentLogins.ToList());
+            var staffLogins = db.StaffLogins.Include(s => s.Staff);
+            return View(staffLogins.ToList());
         }
 
-        // GET: StudentLogins/Details/5
+        // GET: StaffLogins/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            StudentLogin studentLogin = db.StudentLogins.Find(id);
-            if (studentLogin == null)
+            StaffLogin staffLogin = db.StaffLogins.Find(id);
+            if (staffLogin == null)
             {
                 return HttpNotFound();
             }
-            return View(studentLogin);
+            return View(staffLogin);
         }
 
-        // GET: StudentLogins/Create
+        // GET: StaffLogins/Create
         public ActionResult Create()
         {
-            ViewBag.student_id = new SelectList(db.Students, "StudentID", "StudentID");
+            ViewBag.staff_id = new SelectList(db.Staffs, "staff_id", "first_name");
             return View();
         }
 
-        // POST: StudentLogins/Create
+        // POST: StaffLogins/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "student_id,student_pwd")] StudentLogin studentLogin)
+        public ActionResult Create([Bind(Include = "staff_id,staff_pwd")] StaffLogin staffLogin)
         {
             if (ModelState.IsValid)
             {
-                db.StudentLogins.Add(studentLogin);
+                db.StaffLogins.Add(staffLogin);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.student_id = new SelectList(db.Students, "StudentID", "Fname", studentLogin.student_id);
-            return View(studentLogin);
+            ViewBag.staff_id = new SelectList(db.Staffs, "staff_id", "first_name", staffLogin.staff_id);
+            return View(staffLogin);
         }
 
-        // GET: StudentLogins/Edit/5
+        // GET: StaffLogins/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            StudentLogin studentLogin = db.StudentLogins.Find(id);
-            if (studentLogin == null)
+            StaffLogin staffLogin = db.StaffLogins.Find(id);
+            if (staffLogin == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.student_id = new SelectList(db.Students, "StudentID", "Fname", studentLogin.student_id);
-            return View(studentLogin);
+            ViewBag.staff_id = new SelectList(db.Staffs, "staff_id", "first_name", staffLogin.staff_id);
+            return View(staffLogin);
         }
 
-        // POST: StudentLogins/Edit/5
+        // POST: StaffLogins/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "student_id,student_pwd")] StudentLogin studentLogin)
+        public ActionResult Edit([Bind(Include = "staff_id,staff_pwd")] StaffLogin staffLogin)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(studentLogin).State = EntityState.Modified;
+                db.Entry(staffLogin).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.student_id = new SelectList(db.Students, "StudentID", "Fname", studentLogin.student_id);
-            return View(studentLogin);
+            ViewBag.staff_id = new SelectList(db.Staffs, "staff_id", "first_name", staffLogin.staff_id);
+            return View(staffLogin);
         }
 
-        // GET: StudentLogins/Delete/5
+        // GET: StaffLogins/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            StudentLogin studentLogin = db.StudentLogins.Find(id);
-            if (studentLogin == null)
+            StaffLogin staffLogin = db.StaffLogins.Find(id);
+            if (staffLogin == null)
             {
                 return HttpNotFound();
             }
-            return View(studentLogin);
+            return View(staffLogin);
         }
 
-        // POST: StudentLogins/Delete/5
+        // POST: StaffLogins/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            StudentLogin studentLogin = db.StudentLogins.Find(id);
-            db.StudentLogins.Remove(studentLogin);
+            StaffLogin staffLogin = db.StaffLogins.Find(id);
+            db.StaffLogins.Remove(staffLogin);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -128,49 +128,45 @@ namespace DBFirstEF_LMS.Controllers
             }
             base.Dispose(disposing);
         }
-
- 
         public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Login(string studentID, string studentPass)
+        public ActionResult Login(string staffID, string staffPass)
         {
-            string u = studentID;
-            string p = studentPass;
+            string u = staffID;
+            string p = staffPass;
 
 
-            if (studentID == null)
+            if (staffID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            StudentLogin studentLogin = db.StudentLogins.Find(Convert.ToInt32(studentID));
+            StaffLogin staffLogin = db.StaffLogins.Find(Convert.ToInt32(staffID));
 
-            if (studentLogin == null)
+            if (staffLogin == null)
             {
                 ViewBag.LoginSuccess = "Please Retry, please type again.";
             }
             else
             {
 
-                if (studentPass == studentLogin.student_pwd)
+                if (staffPass == staffLogin.staff_pwd)
                 {
                     ViewBag.LoginSuccess = "Success";
-                    
-                    return RedirectToAction("Index", "StudentPortal", null);
-
+                    return RedirectToAction("Index", "StaffPortal", null);
                 }
                 else
                 {
                     ViewBag.LoginSuccess = "Failed";
+
                 }
             }
 
 
             return View();
         }
-
     }
 }
