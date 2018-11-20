@@ -28,7 +28,7 @@ namespace DBFirstEF_LMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Registered registered = db.Registereds.Find(id);
+            Registered registered = db.Registereds.Find(id, 10001);
             if (registered == null)
             {
                 return HttpNotFound();

@@ -130,7 +130,11 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegisteredsController.cs" />
+    <Compile Include="Controllers\SectionsController.cs" />
+    <Compile Include="Controllers\StaffPortalController.cs" />
+    <Compile Include="Controllers\StudentLoginsController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -153,7 +157,13 @@
     <Compile Include="Models\Staff.cs">
       <DependentUpon>UniversitylmsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\StaffLogin.cs">
+      <DependentUpon>UniversitylmsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Student.cs">
+      <DependentUpon>UniversitylmsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StudentLogin.cs">
       <DependentUpon>UniversitylmsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UniversitylmsModel.Context.cs">
@@ -201,6 +211,20 @@
     <Content Include="Views\Courses\Details.cshtml" />
     <Content Include="Views\Courses\Edit.cshtml" />
     <Content Include="Views\Courses\Index.cshtml" />
+    <Content Include="Views\StudentLogins\Create.cshtml" />
+    <Content Include="Views\StudentLogins\Delete.cshtml" />
+    <Content Include="Views\StudentLogins\Details.cshtml" />
+    <Content Include="Views\StudentLogins\Edit.cshtml" />
+    <Content Include="Views\StudentLogins\Index.cshtml" />
+    <Content Include="Views\StudentLogins\Login.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Sections\Create.cshtml" />
+    <Content Include="Views\Sections\Delete.cshtml" />
+    <Content Include="Views\Sections\Details.cshtml" />
+    <Content Include="Views\Sections\Edit.cshtml" />
+    <Content Include="Views\Sections\Index.cshtml" />
+    <Content Include="Views\Students\ShowStudentClasses.cshtml" />
+    <Content Include="Views\StaffPortal\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -123,5 +123,18 @@ namespace DBFirstEF_LMS.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult ShowStudentClasses(int id)
+        {
+            var query = from Student in db.Students
+                        join Registered in db.Registereds on Student.StudentID equals Registered.student_id
+                        where Student.StudentID == id
+                        select new { s = Student, r = Registered };
+
+            //var query = db.Students.Join(db.Registereds, Student => Student.StudentID, Registered => Registered.student_id,(Student,Registered) => new { Student = Student, Registered = Registered}).Where()
+            return View(db.Registereds.ToList());
+        }
+
+
     }
 }

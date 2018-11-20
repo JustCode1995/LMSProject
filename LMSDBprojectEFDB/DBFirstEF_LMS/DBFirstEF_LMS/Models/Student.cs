@@ -27,5 +27,6 @@ namespace DBFirstEF_LMS.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Registered> Registereds { get; set; }
+        public virtual StudentLogin StudentLogin { get; set; }
     }
 }
