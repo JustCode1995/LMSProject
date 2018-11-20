@@ -133,8 +133,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegisteredsController.cs" />
     <Compile Include="Controllers\SectionsController.cs" />
+    <Compile Include="Controllers\StaffLoginsController.cs" />
     <Compile Include="Controllers\StaffPortalController.cs" />
     <Compile Include="Controllers\StudentLoginsController.cs" />
+    <Compile Include="Controllers\StudentPortalController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -225,6 +227,14 @@
     <Content Include="Views\Sections\Index.cshtml" />
     <Content Include="Views\Students\ShowStudentClasses.cshtml" />
     <Content Include="Views\StaffPortal\Index.cshtml" />
+    <Content Include="Views\.cshtml" />
+    <Content Include="Views\StudentPortal\Index.cshtml" />
+    <Content Include="Views\StaffLogins\Create.cshtml" />
+    <Content Include="Views\StaffLogins\Delete.cshtml" />
+    <Content Include="Views\StaffLogins\Details.cshtml" />
+    <Content Include="Views\StaffLogins\Edit.cshtml" />
+    <Content Include="Views\StaffLogins\Index.cshtml" />
+    <Content Include="Views\StaffLogins\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
