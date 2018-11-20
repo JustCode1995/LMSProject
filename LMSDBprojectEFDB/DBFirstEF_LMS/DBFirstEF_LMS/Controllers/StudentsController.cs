@@ -126,6 +126,7 @@ namespace DBFirstEF_LMS.Controllers
 
         public ActionResult ShowStudentClasses(int id)
         {
+<<<<<<< HEAD
             var query = from Student in db.Students
                         join Registered in db.Registereds on Student.StudentID equals Registered.student_id
                         where Student.StudentID == id
@@ -133,6 +134,68 @@ namespace DBFirstEF_LMS.Controllers
 
             //var query = db.Students.Join(db.Registereds, Student => Student.StudentID, Registered => Registered.student_id,(Student,Registered) => new { Student = Student, Registered = Registered}).Where()
             return View(db.Registereds.ToList());
+=======
+
+            if (id != null)
+            {
+                var quer = from s in db.Students
+                           join r in db.Registereds on s.StudentID equals r.student_id
+                           join sec in db.Sections on r.section_id equals sec.section_id
+                           join cse in db.Courses on sec.course_id equals cse.course_id
+                           join sem in db.Semesters on sec.semester_id equals sem.sem_id
+                           where s.StudentID == id
+                           select new
+                           {
+                               stud_id = s.StudentID,
+                               stud_fname = s.Fname,
+                               stud_lname = s.Lname,
+                               sec_id = r.section_id,
+                               sec_dow = sec.day_of_week,
+                               sec_stim = sec.start_time,
+                               sec_etim = sec.end_time,
+                               sem_dsc = sem.sem_desc,
+                               sem_sdt = sem.start_dt,
+                               sem_edt = sem.end_dt,
+                               cse_nm = cse.course_name,
+                               cse_dsc = cse.course_desc,
+                               cse_id = cse.course_id,
+                               cse.Department.dept_desc
+                           };
+
+
+                List<Section> listofSections = new List<Section>();
+                List<Course> listofCourses = new List<Course>();
+                List<SelectListItem> listSectionCourse = new List<SelectListItem>();
+                Student student = db.Students.Find(id);
+
+                foreach (var item in quer)
+                {
+                    listofSections.Add(db.Sections.Find(Convert.ToInt32(item.sec_id)));
+                    listofCourses.Add(db.Courses.Find(Convert.ToInt32(item.cse_id)));
+                    //listSectionCourse.Add(db.Sections.Find(Convert.ToInt32(item.sec_id)),db.Courses.Find(Convert.ToInt32(item.cse_id)))
+                }
+
+                //List<SelectListItem> listSectionCourse = new List<SelectListItem>();
+                //foreach (var item in quer)
+                //{
+                //    listSectionCourse.Add(new SelectListItem { Value = , Text = item.stud_id.ToString() });
+                //}
+                //ViewBag.stdregList = stdreg;
+
+                ViewBag.Sections = listofSections;
+                ViewBag.Courses = listofCourses;
+                ViewBag.Student = student;
+                ViewBag.Query = quer;
+
+                return View(student);
+            }
+            else
+            {
+                return View("StudentLogins/Login");
+
+            }
+           
+>>>>>>> f846092320f2f0c2bf8fb561b4eba433f6726548
         }
 
 

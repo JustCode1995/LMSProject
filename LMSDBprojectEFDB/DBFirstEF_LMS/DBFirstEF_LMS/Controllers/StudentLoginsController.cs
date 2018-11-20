@@ -39,7 +39,11 @@ namespace DBFirstEF_LMS.Controllers
         // GET: StudentLogins/Create
         public ActionResult Create()
         {
+<<<<<<< HEAD
             ViewBag.student_id = new SelectList(db.Students, "StudentID", "StudentID");
+=======
+            ViewBag.student_id = new SelectList(db.Students, "StudentID", "Fname");
+>>>>>>> f846092320f2f0c2bf8fb561b4eba433f6726548
             return View();
         }
 
@@ -150,6 +154,7 @@ namespace DBFirstEF_LMS.Controllers
 
             if (studentLogin == null)
             {
+<<<<<<< HEAD
                 ViewBag.LoginSuccess = "Please Retry, please type again.";
             }
             else
@@ -168,6 +173,24 @@ namespace DBFirstEF_LMS.Controllers
             }
 
 
+=======
+                ViewBag.LoginSuccess = "Invalid login, please try agian.";
+            }
+            else
+            {
+                if (studentPass == studentLogin.student_pwd)
+                {
+                    ViewBag.LoginSuccess = "Success";
+                    System.Web.HttpContext.Current.Session["loginSessionVar"] = studentID;
+                    return View("Students/ShowStudentClasses", new { id = studentID });
+                }
+                else
+                {
+                    ViewBag.LoginSuccess = "Login failed, please check password.";
+                }
+            }
+
+>>>>>>> f846092320f2f0c2bf8fb561b4eba433f6726548
             return View();
         }
 

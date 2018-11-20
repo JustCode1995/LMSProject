@@ -12,28 +12,40 @@
 <table class="table">
     <tr>
         <th>
+<<<<<<< HEAD
             @Html.DisplayNameFor(model => model.Student.StudentID)
+=======
+            @Html.DisplayNameFor(model => model.student_pwd)
+>>>>>>> f846092320f2f0c2bf8fb561b4eba433f6726548
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Student.Fname)
         </th>
+<<<<<<< HEAD
         <th>
             @Html.DisplayNameFor(model => model.Student.Lname)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.student_pwd)
         </th>
+=======
+>>>>>>> f846092320f2f0c2bf8fb561b4eba433f6726548
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
+<<<<<<< HEAD
             @Html.DisplayFor(modelItem => item.Student.StudentID)
+=======
+            @Html.DisplayFor(modelItem => item.student_pwd)
+>>>>>>> f846092320f2f0c2bf8fb561b4eba433f6726548
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Student.Fname)
         </td>
+<<<<<<< HEAD
         <th>
             @Html.DisplayFor(modelItem => item.Student.Lname)
         </th>
@@ -44,6 +56,12 @@
             @Html.ActionLink("Edit", "Edit", new { id = item.student_id }) |
             @Html.ActionLink("Details", "Details", new { id = item.student_id }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.student_id })
+=======
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.student_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.student_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.student_id })
+>>>>>>> f846092320f2f0c2bf8fb561b4eba433f6726548
         </td>
     </tr>
 }

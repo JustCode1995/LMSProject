@@ -133,7 +133,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegisteredsController.cs" />
     <Compile Include="Controllers\SectionsController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\StaffPortalController.cs" />
+=======
+>>>>>>> f846092320f2f0c2bf8fb561b4eba433f6726548
     <Compile Include="Controllers\StudentLoginsController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -224,7 +227,10 @@
     <Content Include="Views\Sections\Edit.cshtml" />
     <Content Include="Views\Sections\Index.cshtml" />
     <Content Include="Views\Students\ShowStudentClasses.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\StaffPortal\Index.cshtml" />
+=======
+>>>>>>> f846092320f2f0c2bf8fb561b4eba433f6726548
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
