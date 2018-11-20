@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="LMSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Assignment">
+          <Key>
+            <PropertyRef Name="assignment_id" />
+          </Key>
+          <Property Name="assignment_id" Type="int" Nullable="false" />
+          <Property Name="section_id" Type="int" />
+          <Property Name="assignment_name" Type="varchar" MaxLength="55" />
+          <Property Name="assignment_due_dt" Type="date" />
+          <Property Name="assignment_open_dt" Type="date" />
+        </EntityType>
         <EntityType Name="Course">
           <Key>
             <PropertyRef Name="course_id" />
@@ -79,6 +89,17 @@
           <Property Name="Lname" Type="nchar" MaxLength="20" />
           <Property Name="DOB" Type="date" />
         </EntityType>
+        <EntityType Name="Student_Assignment">
+          <Key>
+            <PropertyRef Name="section_id" />
+            <PropertyRef Name="assignment_id" />
+            <PropertyRef Name="studentID" />
+          </Key>
+          <Property Name="section_id" Type="int" Nullable="false" />
+          <Property Name="assignment_id" Type="int" Nullable="false" />
+          <Property Name="studentID" Type="int" Nullable="false" />
+          <Property Name="grade" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
         <EntityType Name="StudentLogin">
           <Key>
             <PropertyRef Name="student_id" />
@@ -86,6 +107,18 @@
           <Property Name="student_id" Type="int" Nullable="false" />
           <Property Name="student_pwd" Type="varchar" MaxLength="55" Nullable="false" />
         </EntityType>
+        <Association Name="FK__Assignmen__secti__29221CFB">
+          <End Role="Section" Type="Self.Section" Multiplicity="0..1" />
+          <End Role="Assignment" Type="Self.Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="section_id" />
+            </Principal>
+            <Dependent Role="Assignment">
+              <PropertyRef Name="section_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Course__dept_id__6477ECF3">
           <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
           <End Role="Course" Type="Self.Course" Multiplicity="*" />
@@ -122,7 +155,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Section__course___6754599E">
+        <Association Name="FK__Section__course___151B244E">
           <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
           <End Role="Section" Type="Self.Section" Multiplicity="*" />
           <ReferentialConstraint>
@@ -134,7 +167,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Section__semeste__693CA210">
+        <Association Name="FK__Section__semeste__160F4887">
           <End Role="Semester" Type="Self.Semester" Multiplicity="0..1" />
           <End Role="Section" Type="Self.Section" Multiplicity="*" />
           <ReferentialConstraint>
@@ -146,7 +179,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Section__teacher__68487DD7">
+        <Association Name="FK__Section__teacher__17036CC0">
           <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
           <End Role="Section" Type="Self.Section" Multiplicity="*" />
           <ReferentialConstraint>
@@ -182,6 +215,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Student_A__assig__2CF2ADDF">
+          <End Role="Assignment" Type="Self.Assignment" Multiplicity="1" />
+          <End Role="Student_Assignment" Type="Self.Student_Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assignment">
+              <PropertyRef Name="assignment_id" />
+            </Principal>
+            <Dependent Role="Student_Assignment">
+              <PropertyRef Name="assignment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student_A__secti__2BFE89A6">
+          <End Role="Section" Type="Self.Section" Multiplicity="1" />
+          <End Role="Student_Assignment" Type="Self.Student_Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="section_id" />
+            </Principal>
+            <Dependent Role="Student_Assignment">
+              <PropertyRef Name="section_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student_A__stude__2DE6D218">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Student_Assignment" Type="Self.Student_Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="Student_Assignment">
+              <PropertyRef Name="studentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__StudentLo__stude__0B91BA14">
           <End Role="Student" Type="Self.Student" Multiplicity="1" />
           <End Role="StudentLogin" Type="Self.StudentLogin" Multiplicity="0..1" />
@@ -195,6 +264,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="LMSDBModelStoreContainer">
+          <EntitySet Name="Assignment" EntityType="Self.Assignment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Registered" EntityType="Self.Registered" Schema="dbo" store:Type="Tables" />
@@ -203,7 +273,12 @@
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StaffLogin" EntityType="Self.StaffLogin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student_Assignment" EntityType="Self.Student_Assignment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StudentLogin" EntityType="Self.StudentLogin" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Assignmen__secti__29221CFB" Association="Self.FK__Assignmen__secti__29221CFB">
+            <End Role="Section" EntitySet="Section" />
+            <End Role="Assignment" EntitySet="Assignment" />
+          </AssociationSet>
           <AssociationSet Name="FK__Course__dept_id__6477ECF3" Association="Self.FK__Course__dept_id__6477ECF3">
             <End Role="Department" EntitySet="Department" />
             <End Role="Course" EntitySet="Course" />
@@ -216,15 +291,15 @@
             <End Role="Student" EntitySet="Student" />
             <End Role="Registered" EntitySet="Registered" />
           </AssociationSet>
-          <AssociationSet Name="FK__Section__course___6754599E" Association="Self.FK__Section__course___6754599E">
+          <AssociationSet Name="FK__Section__course___151B244E" Association="Self.FK__Section__course___151B244E">
             <End Role="Course" EntitySet="Course" />
             <End Role="Section" EntitySet="Section" />
           </AssociationSet>
-          <AssociationSet Name="FK__Section__semeste__693CA210" Association="Self.FK__Section__semeste__693CA210">
+          <AssociationSet Name="FK__Section__semeste__160F4887" Association="Self.FK__Section__semeste__160F4887">
             <End Role="Semester" EntitySet="Semester" />
             <End Role="Section" EntitySet="Section" />
           </AssociationSet>
-          <AssociationSet Name="FK__Section__teacher__68487DD7" Association="Self.FK__Section__teacher__68487DD7">
+          <AssociationSet Name="FK__Section__teacher__17036CC0" Association="Self.FK__Section__teacher__17036CC0">
             <End Role="Staff" EntitySet="Staff" />
             <End Role="Section" EntitySet="Section" />
           </AssociationSet>
@@ -235,6 +310,18 @@
           <AssociationSet Name="FK__StaffLogi__staff__114A936A" Association="Self.FK__StaffLogi__staff__114A936A">
             <End Role="Staff" EntitySet="Staff" />
             <End Role="StaffLogin" EntitySet="StaffLogin" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student_A__assig__2CF2ADDF" Association="Self.FK__Student_A__assig__2CF2ADDF">
+            <End Role="Assignment" EntitySet="Assignment" />
+            <End Role="Student_Assignment" EntitySet="Student_Assignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student_A__secti__2BFE89A6" Association="Self.FK__Student_A__secti__2BFE89A6">
+            <End Role="Section" EntitySet="Section" />
+            <End Role="Student_Assignment" EntitySet="Student_Assignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student_A__stude__2DE6D218" Association="Self.FK__Student_A__stude__2DE6D218">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Student_Assignment" EntitySet="Student_Assignment" />
           </AssociationSet>
           <AssociationSet Name="FK__StudentLo__stude__0B91BA14" Association="Self.FK__StudentLo__stude__0B91BA14">
             <End Role="Student" EntitySet="Student" />
@@ -292,6 +379,8 @@
           <NavigationProperty Name="Registereds" Relationship="Self.FK__Registere__secti__70DDC3D8" FromRole="Section" ToRole="Registered" />
           <NavigationProperty Name="Semester" Relationship="Self.FK__Section__semeste__693CA210" FromRole="Section" ToRole="Semester" />
           <NavigationProperty Name="Staff" Relationship="Self.FK__Section__teacher__68487DD7" FromRole="Section" ToRole="Staff" />
+          <NavigationProperty Name="Assignments" Relationship="LMSDBModel.FK__Assignmen__secti__29221CFB" FromRole="Section" ToRole="Assignment" />
+          <NavigationProperty Name="Student_Assignment" Relationship="LMSDBModel.FK__Student_A__secti__2BFE89A6" FromRole="Section" ToRole="Student_Assignment" />
         </EntityType>
         <EntityType Name="Semester">
           <Key>
@@ -327,6 +416,7 @@
           <Property Name="DOB" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Registereds" Relationship="Self.FK__Registere__stude__71D1E811" FromRole="Student" ToRole="Registered" />
           <NavigationProperty Name="StudentLogin" Relationship="LMSDBModel.FK__StudentLo__stude__0B91BA14" FromRole="Student" ToRole="StudentLogin" />
+          <NavigationProperty Name="Student_Assignment" Relationship="LMSDBModel.FK__Student_A__stude__2DE6D218" FromRole="Student" ToRole="Student_Assignment" />
         </EntityType>
         <Association Name="FK__Course__dept_id__6477ECF3">
           <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
@@ -458,6 +548,24 @@
             <End Role="Student" EntitySet="Students" />
             <End Role="StudentLogin" EntitySet="StudentLogins" />
           </AssociationSet>
+          <EntitySet Name="Assignments" EntityType="LMSDBModel.Assignment" />
+          <EntitySet Name="Student_Assignment" EntityType="LMSDBModel.Student_Assignment" />
+          <AssociationSet Name="FK__Assignmen__secti__29221CFB" Association="LMSDBModel.FK__Assignmen__secti__29221CFB">
+            <End Role="Section" EntitySet="Sections" />
+            <End Role="Assignment" EntitySet="Assignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student_A__assig__2CF2ADDF" Association="LMSDBModel.FK__Student_A__assig__2CF2ADDF">
+            <End Role="Assignment" EntitySet="Assignments" />
+            <End Role="Student_Assignment" EntitySet="Student_Assignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student_A__secti__2BFE89A6" Association="LMSDBModel.FK__Student_A__secti__2BFE89A6">
+            <End Role="Section" EntitySet="Sections" />
+            <End Role="Student_Assignment" EntitySet="Student_Assignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student_A__stude__2DE6D218" Association="LMSDBModel.FK__Student_A__stude__2DE6D218">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Student_Assignment" EntitySet="Student_Assignment" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="StaffLogin">
           <Key>
@@ -496,6 +604,80 @@
             </Principal>
             <Dependent Role="StudentLogin">
               <PropertyRef Name="student_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Assignment">
+          <Key>
+            <PropertyRef Name="assignment_id" />
+          </Key>
+          <Property Name="assignment_id" Type="Int32" Nullable="false" />
+          <Property Name="section_id" Type="Int32" />
+          <Property Name="assignment_name" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="assignment_due_dt" Type="DateTime" Precision="0" />
+          <Property Name="assignment_open_dt" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Section" Relationship="LMSDBModel.FK__Assignmen__secti__29221CFB" FromRole="Assignment" ToRole="Section" />
+          <NavigationProperty Name="Student_Assignment" Relationship="LMSDBModel.FK__Student_A__assig__2CF2ADDF" FromRole="Assignment" ToRole="Student_Assignment" />
+        </EntityType>
+        <EntityType Name="Student_Assignment">
+          <Key>
+            <PropertyRef Name="section_id" />
+            <PropertyRef Name="assignment_id" />
+            <PropertyRef Name="studentID" />
+          </Key>
+          <Property Name="section_id" Type="Int32" Nullable="false" />
+          <Property Name="assignment_id" Type="Int32" Nullable="false" />
+          <Property Name="studentID" Type="Int32" Nullable="false" />
+          <Property Name="grade" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Assignment" Relationship="LMSDBModel.FK__Student_A__assig__2CF2ADDF" FromRole="Student_Assignment" ToRole="Assignment" />
+          <NavigationProperty Name="Section" Relationship="LMSDBModel.FK__Student_A__secti__2BFE89A6" FromRole="Student_Assignment" ToRole="Section" />
+          <NavigationProperty Name="Student" Relationship="LMSDBModel.FK__Student_A__stude__2DE6D218" FromRole="Student_Assignment" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK__Assignmen__secti__29221CFB">
+          <End Type="LMSDBModel.Section" Role="Section" Multiplicity="0..1" />
+          <End Type="LMSDBModel.Assignment" Role="Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="section_id" />
+            </Principal>
+            <Dependent Role="Assignment">
+              <PropertyRef Name="section_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student_A__assig__2CF2ADDF">
+          <End Type="LMSDBModel.Assignment" Role="Assignment" Multiplicity="1" />
+          <End Type="LMSDBModel.Student_Assignment" Role="Student_Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assignment">
+              <PropertyRef Name="assignment_id" />
+            </Principal>
+            <Dependent Role="Student_Assignment">
+              <PropertyRef Name="assignment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student_A__secti__2BFE89A6">
+          <End Type="LMSDBModel.Section" Role="Section" Multiplicity="1" />
+          <End Type="LMSDBModel.Student_Assignment" Role="Student_Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="section_id" />
+            </Principal>
+            <Dependent Role="Student_Assignment">
+              <PropertyRef Name="section_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student_A__stude__2DE6D218">
+          <End Type="LMSDBModel.Student" Role="Student" Multiplicity="1" />
+          <End Type="LMSDBModel.Student_Assignment" Role="Student_Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="Student_Assignment">
+              <PropertyRef Name="studentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -591,6 +773,27 @@
               <MappingFragment StoreEntitySet="StudentLogin">
                 <ScalarProperty Name="student_pwd" ColumnName="student_pwd" />
                 <ScalarProperty Name="student_id" ColumnName="student_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Assignments">
+            <EntityTypeMapping TypeName="LMSDBModel.Assignment">
+              <MappingFragment StoreEntitySet="Assignment">
+                <ScalarProperty Name="assignment_open_dt" ColumnName="assignment_open_dt" />
+                <ScalarProperty Name="assignment_due_dt" ColumnName="assignment_due_dt" />
+                <ScalarProperty Name="assignment_name" ColumnName="assignment_name" />
+                <ScalarProperty Name="section_id" ColumnName="section_id" />
+                <ScalarProperty Name="assignment_id" ColumnName="assignment_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student_Assignment">
+            <EntityTypeMapping TypeName="LMSDBModel.Student_Assignment">
+              <MappingFragment StoreEntitySet="Student_Assignment">
+                <ScalarProperty Name="grade" ColumnName="grade" />
+                <ScalarProperty Name="studentID" ColumnName="studentID" />
+                <ScalarProperty Name="assignment_id" ColumnName="assignment_id" />
+                <ScalarProperty Name="section_id" ColumnName="section_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

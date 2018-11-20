@@ -34,5 +34,7 @@ namespace DBFirstEF_LMS.Models
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<StaffLogin> StaffLogins { get; set; }
         public virtual DbSet<StudentLogin> StudentLogins { get; set; }
+        public virtual DbSet<Assignment> Assignments { get; set; }
+        public virtual DbSet<Student_Assignment> Student_Assignment { get; set; }
     }
 }

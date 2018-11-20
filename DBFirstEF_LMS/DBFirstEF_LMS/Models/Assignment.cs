@@ -12,23 +12,21 @@ namespace DBFirstEF_LMS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Student
+    public partial class Assignment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Student()
+        public Assignment()
         {
-            this.Registereds = new HashSet<Registered>();
             this.Student_Assignment = new HashSet<Student_Assignment>();
         }
     
-        public int StudentID { get; set; }
-        public string Fname { get; set; }
-        public string Lname { get; set; }
-        public Nullable<System.DateTime> DOB { get; set; }
+        public int assignment_id { get; set; }
+        public Nullable<int> section_id { get; set; }
+        public string assignment_name { get; set; }
+        public Nullable<System.DateTime> assignment_due_dt { get; set; }
+        public Nullable<System.DateTime> assignment_open_dt { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Registered> Registereds { get; set; }
-        public virtual StudentLogin StudentLogin { get; set; }
+        public virtual Section Section { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student_Assignment> Student_Assignment { get; set; }
     }

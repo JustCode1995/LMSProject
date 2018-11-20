@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ba0bac57f2884e5e88fd5c338f4b90f7" Name="Diagram1" ZoomLevel="82">
+      <Diagram DiagramId="ba0bac57f2884e5e88fd5c338f4b90f7" Name="Diagram1" ZoomLevel="63">
         <EntityTypeShape EntityType="LMSDBModel.Course" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LMSDBModel.Department" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LMSDBModel.Registered" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
@@ -23,6 +23,12 @@
         <EntityTypeShape EntityType="LMSDBModel.StudentLogin" Width="1.5" PointX="7.5" PointY="1" />
         <AssociationConnector Association="LMSDBModel.FK__StaffLogi__staff__114A936A" />
         <AssociationConnector Association="LMSDBModel.FK__StudentLo__stude__0B91BA14" />
+        <EntityTypeShape EntityType="LMSDBModel.Assignment" Width="1.5" PointX="8.25" PointY="9" />
+        <EntityTypeShape EntityType="LMSDBModel.Student_Assignment" Width="1.5" PointX="10.5" PointY="3" />
+        <AssociationConnector Association="LMSDBModel.FK__Assignmen__secti__29221CFB" />
+        <AssociationConnector Association="LMSDBModel.FK__Student_A__assig__2CF2ADDF" />
+        <AssociationConnector Association="LMSDBModel.FK__Student_A__secti__2BFE89A6" />
+        <AssociationConnector Association="LMSDBModel.FK__Student_A__stude__2DE6D218" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

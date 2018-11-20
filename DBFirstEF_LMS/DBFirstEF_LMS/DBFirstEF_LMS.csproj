@@ -139,6 +139,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Assignment.cs">
+      <DependentUpon>UniversitylmsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Course.cs">
       <DependentUpon>UniversitylmsModel.tt</DependentUpon>
     </Compile>
@@ -164,6 +167,9 @@
       <DependentUpon>UniversitylmsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StudentLogin.cs">
+      <DependentUpon>UniversitylmsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Student_Assignment.cs">
       <DependentUpon>UniversitylmsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UniversitylmsModel.Context.cs">

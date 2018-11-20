@@ -18,6 +18,8 @@ namespace DBFirstEF_LMS.Models
         public Section()
         {
             this.Registereds = new HashSet<Registered>();
+            this.Assignments = new HashSet<Assignment>();
+            this.Student_Assignment = new HashSet<Student_Assignment>();
         }
     
         public int section_id { get; set; }
@@ -33,5 +35,9 @@ namespace DBFirstEF_LMS.Models
         public virtual ICollection<Registered> Registereds { get; set; }
         public virtual Semester Semester { get; set; }
         public virtual Staff Staff { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Assignment> Assignments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Student_Assignment> Student_Assignment { get; set; }
     }
 }
