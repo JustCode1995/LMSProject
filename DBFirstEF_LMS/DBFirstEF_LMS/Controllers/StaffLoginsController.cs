@@ -139,12 +139,12 @@ namespace DBFirstEF_LMS.Controllers
             string u = staffID;
             string p = staffPass;
 
-
             if (staffID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             StaffLogin staffLogin = db.StaffLogins.Find(Convert.ToInt32(staffID));
+            Staff staff = db.Staffs.Find(Convert.ToInt32(staffID));
 
             if (staffLogin == null)
             {
@@ -152,18 +152,36 @@ namespace DBFirstEF_LMS.Controllers
             }
             else
             {
-
-                if (staffPass == staffLogin.staff_pwd)
+                if (staff.access_level == 1)
                 {
-                    ViewBag.LoginSuccess = "Success";
-                    return RedirectToAction("Index", "StaffPortal", null);
+                    if (staffPass == staffLogin.staff_pwd)
+                    {
+                        ViewBag.LoginSuccess = "Success";
+                        System.Web.HttpContext.Current.Session["sv_staffLogin"] = Convert.ToInt32(staffID);
+                        return RedirectToAction("Index", "StaffPortal", null);
+                    }
+                    else
+                    {
+                        ViewBag.LoginSuccess = "Failed";
+
+                    }
                 }
                 else
                 {
-                    ViewBag.LoginSuccess = "Failed";
+                    if (staffPass == staffLogin.staff_pwd)
+                    {
+                        ViewBag.LoginSuccess = "Success";
+                        System.Web.HttpContext.Current.Session["sv_staffLogin"] = Convert.ToInt32(staffID);
+                        return RedirectToAction("Index", "TeacherPortal", null);
+                    }
+                    else
+                    {
+                        ViewBag.LoginSuccess = "Failed";
 
+                    }
                 }
             }
+
 
 
             return View();

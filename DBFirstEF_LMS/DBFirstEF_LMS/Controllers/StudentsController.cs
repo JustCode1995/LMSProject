@@ -183,7 +183,6 @@ namespace DBFirstEF_LMS.Controllers
             else
             {
                 return View("StudentLogins/Login");
-
             }
 
         }
