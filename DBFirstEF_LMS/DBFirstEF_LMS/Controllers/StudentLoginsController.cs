@@ -156,8 +156,7 @@ namespace DBFirstEF_LMS.Controllers
                 if (studentPass == studentLogin.student_pwd)
                 {
                     ViewBag.LoginSuccess = "Success";
-                    System.Web.HttpContext.Current.Session["loginSessionVar"] = Convert.ToInt32(studentID);
-                    ViewBag.sid = Session["loginSessionVar"];
+                    System.Web.HttpContext.Current.Session["sv_studentLogin"] = Convert.ToInt32(studentID);
                     return RedirectToAction("Index", "StudentPortal", null);
                 }
                 else
