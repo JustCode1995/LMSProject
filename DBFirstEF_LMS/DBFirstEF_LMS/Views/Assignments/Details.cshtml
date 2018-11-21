@@ -1,0 +1,50 @@
+﻿@model DBFirstEF_LMS.Models.Assignment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Assignment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.assignment_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.assignment_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.assignment_due_dt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.assignment_due_dt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.assignment_open_dt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.assignment_open_dt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Section.day_of_week)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Section.day_of_week)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.assignment_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
