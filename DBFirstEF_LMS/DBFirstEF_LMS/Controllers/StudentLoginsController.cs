@@ -141,7 +141,6 @@ namespace DBFirstEF_LMS.Controllers
             string u = studentID;
             string p = studentPass;
 
-
             if (studentID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -154,13 +153,11 @@ namespace DBFirstEF_LMS.Controllers
             }
             else
             {
-
                 if (studentPass == studentLogin.student_pwd)
                 {
                     ViewBag.LoginSuccess = "Success";
                     System.Web.HttpContext.Current.Session["loginSessionVar"] = studentID;
                     return RedirectToAction("Index", "StudentPortal", null);
-
                 }
                 else
                 {
