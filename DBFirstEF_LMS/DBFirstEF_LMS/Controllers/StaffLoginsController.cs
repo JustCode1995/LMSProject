@@ -145,44 +145,52 @@ namespace DBFirstEF_LMS.Controllers
             }
             StaffLogin staffLogin = db.StaffLogins.Find(Convert.ToInt32(staffID));
             Staff staff = db.Staffs.Find(Convert.ToInt32(staffID));
-
-            if (staffLogin == null)
+            StudentLogin studentLogin = db.StudentLogins.Find(Convert.ToInt32(staffID));
+     
+            if (studentLogin != null)
             {
-                ViewBag.LoginSuccess = "Please Retry, please type again.";
+                ViewBag.Message = "Please log in using the Student Login page.;
+                return View();
             }
             else
             {
-                if (staff.access_level == 1)
+                if (staffLogin == null)
                 {
-                    if (staffPass == staffLogin.staff_pwd)
-                    {
-                        ViewBag.LoginSuccess = "Success";
-                        System.Web.HttpContext.Current.Session["sv_staffLogin"] = Convert.ToInt32(staffID);
-                        return RedirectToAction("Index", "StaffPortal", null);
-                    }
-                    else
-                    {
-                        ViewBag.LoginSuccess = "Failed";
-
-                    }
+                    ViewBag.LoginSuccess = "Please Retry, please type again.";
                 }
                 else
                 {
-                    if (staffPass == staffLogin.staff_pwd)
+                    if (staff.access_level == 1)
                     {
-                        ViewBag.LoginSuccess = "Success";
-                        System.Web.HttpContext.Current.Session["sv_staffLogin"] = Convert.ToInt32(staffID);
-                        return RedirectToAction("Index", "TeacherPortal", null);
+                        if (staffPass == staffLogin.staff_pwd)
+                        {
+                            ViewBag.LoginSuccess = "Success";
+                            System.Web.HttpContext.Current.Session["sv_staffLogin"] = Convert.ToInt32(staffID);
+                            return RedirectToAction("Index", "StaffPortal", null);
+                        }
+                        else
+                        {
+                            ViewBag.LoginSuccess = "Failed";
+
+                        }
                     }
                     else
                     {
-                        ViewBag.LoginSuccess = "Failed";
+                        if (staffPass == staffLogin.staff_pwd)
+                        {
+                            ViewBag.LoginSuccess = "Success";
+                            System.Web.HttpContext.Current.Session["sv_staffLogin"] = Convert.ToInt32(staffID);
+                            return RedirectToAction("Index", "TeacherPortal", null);
+                        }
+                        else
+                        {
+                            ViewBag.LoginSuccess = "Failed";
 
+                        }
                     }
                 }
+
             }
-
-
 
             return View();
         }
