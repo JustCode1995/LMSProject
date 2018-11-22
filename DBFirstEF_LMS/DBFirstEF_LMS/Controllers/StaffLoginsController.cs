@@ -149,7 +149,7 @@ namespace DBFirstEF_LMS.Controllers
      
             if (studentLogin != null)
             {
-                ViewBag.Message = "Please log in using the Student Login page.;
+                ViewBag.Message = "Please log in using the Student Login page.";
                 return View();
             }
             else
