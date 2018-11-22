@@ -129,7 +129,7 @@ namespace DBFirstEF_LMS.Controllers
 
             if (id != null)
             {
-                var quer = from s in db.Students
+                var query = from s in db.Students
                            join r in db.Registereds on s.StudentID equals r.student_id
                            join sec in db.Sections on r.section_id equals sec.section_id
                            join cse in db.Courses on sec.course_id equals cse.course_id
@@ -154,17 +154,30 @@ namespace DBFirstEF_LMS.Controllers
                            };
 
 
-                List<Section> listofSections = new List<Section>();
-                List<Course> listofCourses = new List<Course>();
-                List<SelectListItem> listSectionCourse = new List<SelectListItem>();
+                List<Object> listview = new List<Object>();
+                foreach(var v in query)
+                {
+                    listview.Add(v.sec_dow);
+                    listview.Add(v.sec_stim);
+                    listview.Add(v.sec_etim);
+                    listview.Add(v.cse_nm);
+                    listview.Add(v.cse_id);
+
+                    ViewBag.ViewList = listview;
+                }
+
+
+                //List<Section> listofSections = new List<Section>();
+                //List<Course> listofCourses = new List<Course>();
+                //List<SelectListItem> listSectionCourse = new List<SelectListItem>();
                 Student student = db.Students.Find(id);
 
-                foreach (var item in quer)
-                {
-                    listofSections.Add(db.Sections.Find(Convert.ToInt32(item.sec_id)));
-                    listofCourses.Add(db.Courses.Find(Convert.ToInt32(item.cse_id)));
-                    //listSectionCourse.Add(db.Sections.Find(Convert.ToInt32(item.sec_id)),db.Courses.Find(Convert.ToInt32(item.cse_id)))
-                }
+                //foreach (var item in query)
+                //{
+                //    listofSections.Add(db.Sections.Find(Convert.ToInt32(item.sec_id)));
+                //    listofCourses.Add(db.Courses.Find(Convert.ToInt32(item.cse_id)));
+                //    //listSectionCourse.Add(db.Sections.Find(Convert.ToInt32(item.sec_id)),db.Courses.Find(Convert.ToInt32(item.cse_id)))
+                //}
 
                 //List<SelectListItem> listSectionCourse = new List<SelectListItem>();
                 //foreach (var item in quer)
@@ -173,10 +186,10 @@ namespace DBFirstEF_LMS.Controllers
                 //}
                 //ViewBag.stdregList = stdreg;
 
-                ViewBag.Sections = listofSections;
-                ViewBag.Courses = listofCourses;
-                ViewBag.Student = student;
-                ViewBag.Query = quer;
+                //ViewBag.Sections = listofSections;
+                //ViewBag.Courses = listofCourses;
+                //ViewBag.Student = student;
+                //ViewBag.Query = query;
 
                 return View(student);
             }
