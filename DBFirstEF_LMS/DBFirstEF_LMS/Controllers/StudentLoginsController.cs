@@ -132,12 +132,17 @@ namespace DBFirstEF_LMS.Controllers
  
         public ActionResult Login()
         {
+            if (Session["sv_studentLogin"] != null)
+            {
+                return RedirectToAction("Index", "StudentPortal", null);
+            }
             return View();
         }
 
         [HttpPost]
         public ActionResult Login(string studentID, string studentPass)
         {
+
             string u = studentID;
             string p = studentPass;
 
