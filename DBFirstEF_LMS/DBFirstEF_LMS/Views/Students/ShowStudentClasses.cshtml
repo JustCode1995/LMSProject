@@ -7,15 +7,15 @@
 <h2>Student records for @Html.DisplayFor(model => model.StudentID)</h2>
 <h3>Menu</h3>
 <div>
-    <table>
-        @foreach (var l in ViewBag.ViewList)
-        {
-            <tr>
-                <td>
-                   @l
-                </td>
-            </tr>
-        }
+    <table>          
+            @foreach (var l in ViewBag.ViewList)
+            {
+                <tr>
+                    <td>
+                        @l
+                    </td>
+                </tr>
+            }
         <tr>
             <td>
                 here too
