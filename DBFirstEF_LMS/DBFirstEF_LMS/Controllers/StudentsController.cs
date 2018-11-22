@@ -201,5 +201,65 @@ namespace DBFirstEF_LMS.Controllers
         }
 
 
+
+        public ActionResult ShowGPA()
+        {
+            double gpa = 0;
+            int count = 1;
+
+            int sid = Convert.ToInt32(Session["sv_studentLogin"]);
+            if (sid == null || sid == 0)
+            {
+                ViewBag.Message = "Please login to view GPA.";
+                return View();
+            }
+            //////var query = from r in db.Registereds
+            //////            where r.student_id == id
+            //////            group r by new { r.student_id, r.section_id } into nGroup
+            //////            select new
+            //////            {
+            //////                section_id = nGroup.Key.section_id,
+            //////                Total = nGroup.Sum(x)
+            //////            }
+
+            var query = from r in db.Registereds
+                        where r.student_id == sid
+                        select new
+                        {
+                            grade = r.grade
+                        };
+            foreach (var g in query)
+            {
+
+                count++;
+                if (g.grade >= 90 && g.grade <= 100)
+                {
+                    gpa += 4.0;
+                }
+                else if (g.grade >= 80 && g.grade <= 89)
+                {
+                    gpa += 3.0;
+                }
+                else if (g.grade >= 70 && g.grade <= 79)
+                {
+                    gpa += 2.0;
+                }
+                else if (g.grade >= 60 && g.grade <= 69)
+                {
+                    gpa += 1.0;
+                }
+                else if (g.grade < 60)
+                {
+                    gpa += 0.0;
+                }
+            }
+
+            gpa = gpa / (count - 1);
+            ViewBag.gpa = gpa;
+
+            return View();
+        }
+
+
     }
 }

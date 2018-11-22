@@ -134,7 +134,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="AssignmentsController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
-    <Compile Include="Controllers\GPACalculator.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegisteredsController.cs" />
     <Compile Include="Controllers\SectionsController.cs" />
@@ -258,11 +257,7 @@
     <Content Include="Views\Assignments\Details.cshtml" />
     <Content Include="Views\Assignments\Edit.cshtml" />
     <Content Include="Views\Assignments\Index.cshtml" />
-    <Content Include="Views\GPACalculator\Create.cshtml" />
-    <Content Include="Views\GPACalculator\Delete.cshtml" />
-    <Content Include="Views\GPACalculator\Details.cshtml" />
-    <Content Include="Views\GPACalculator\Edit.cshtml" />
-    <Content Include="Views\GPACalculator\Index.cshtml" />
+    <Content Include="Views\Students\ShowGPA.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
