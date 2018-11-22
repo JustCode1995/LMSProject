@@ -2,7 +2,30 @@
 @{
     ViewBag.Title = "Show student classes";
 
+
 }
+<h2>Student records for @Html.DisplayFor(model => model.StudentID)</h2>
+<h3>Menu</h3>
+<div>
+    <table>
+        @foreach (var l in ViewBag.ViewList)
+        {
+            <tr>
+                <td>
+                   @l
+                </td>
+            </tr>
+        }
+        <tr>
+            <td>
+                here too
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+
 
 @*looks good from here
     <h2>
@@ -37,84 +60,85 @@
 
 
 
-<table>
-    <tr>
-        <td>
-            <table>
-                <thead>
-                    <tr>
-                        <td>column 1 header 1</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var secn in ViewBag.Sections)
-                    {
+@*<table>
+        <tr>
+            <td>
+                <table>
+                    <thead>
                         <tr>
-                            <td>
-                                @secn.section_id
-                            </td>
+                            <td>column 1 header 1</td>
                         </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var secn in ViewBag.Sections)
+                        {
+                            <tr>
+                                <td>
+                                    @secn.day_of_week
+                                </td>
+                            </tr>
 
-                    }
-                </tbody>
-            </table>
-        </td>
-        <td>
-            <table>
-                <thead>
-                    <tr>
-                        <td>column 2 header 1</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var course in ViewBag.Courses)
-                    {
+
+                        }
+                    </tbody>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>column 2 header 1</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var course in ViewBag.Courses)
+                        {
+                            <tr>
+                                <td>
+                                    @course.course_id
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>column 3 header 1</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var course in ViewBag.Courses)
+                        {
+                            <tr>
+                                <td>
+                                    @course.course_name
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>column 4 header 1</td>
+                        </tr>
+                    </thead>
+                    <tbody>
                         <tr>
                             <td>
-                                @course.course_id
+                                <a href="@Url.Action("Action","Controller")"> <input type="button" value="Class Details" /> </a>
                             </td>
                         </tr>
-                    }
-                </tbody>
-            </table>
-        </td>
-        <td>
-            <table>
-                <thead>
-                    <tr>
-                        <td>column 3 header 1</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var course in ViewBag.Courses)
-                    {
-                        <tr>
-                            <td>
-                                @course.course_name
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </td>
-        <td>
-            <table>
-                <thead>
-                    <tr>
-                        <td>column 4 header 1</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <a href="@Url.Action("Action","Controller")"> <input type="button" value="Class Details" /> </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </td>
-    </tr>
-</table>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>*@
 
 
 
