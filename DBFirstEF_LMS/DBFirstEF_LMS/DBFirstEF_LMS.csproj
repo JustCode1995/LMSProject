@@ -236,7 +236,6 @@
     <Content Include="Views\Sections\Index.cshtml" />
     <Content Include="Views\Students\ShowStudentClasses.cshtml" />
     <Content Include="Views\StaffPortal\Index.cshtml" />
-    <Content Include="Views\.cshtml" />
     <Content Include="Views\StudentPortal\Index.cshtml" />
     <Content Include="Views\StaffLogins\Create.cshtml" />
     <Content Include="Views\StaffLogins\Delete.cshtml" />
