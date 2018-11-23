@@ -179,6 +179,9 @@
     <Compile Include="Models\Student_Assignment.cs">
       <DependentUpon>UniversitylmsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>UniversitylmsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UniversitylmsModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -258,6 +261,7 @@
     <Content Include="Views\Assignments\Edit.cshtml" />
     <Content Include="Views\Assignments\Index.cshtml" />
     <Content Include="Views\Students\ShowGPA.cshtml" />
+    <Content Include="Views\Students\StudentClassList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

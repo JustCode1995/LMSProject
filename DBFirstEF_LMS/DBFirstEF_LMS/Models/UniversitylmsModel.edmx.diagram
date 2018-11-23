@@ -29,6 +29,7 @@
         <AssociationConnector Association="LMSDBModel.FK__Student_A__assig__2CF2ADDF" />
         <AssociationConnector Association="LMSDBModel.FK__Student_A__secti__2BFE89A6" />
         <AssociationConnector Association="LMSDBModel.FK__Student_A__stude__2DE6D218" />
+        <EntityTypeShape EntityType="LMSDBModel.sysdiagram" Width="1.5" PointX="10.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

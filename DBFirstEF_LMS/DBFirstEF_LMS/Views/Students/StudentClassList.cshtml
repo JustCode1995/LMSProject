@@ -1,6 +1,7 @@
 ﻿@model dynamic
+
 @{
-    ViewBag.Title = "Show student classes";
+    ViewBag.Title = "StudentClassList";
 }
 <div class="body-content">
     <h2>Student records for @ViewBag.studentName</h2>
@@ -12,10 +13,10 @@
             {
                 <tr>
                     <td>
-                       <a href="@Html.Action("action","controller")" @c.course_name @c.course_id , @c.day_of_week @c.start_time - @c.end_time />
+                        <a href="@Html.Action("action","controller")" @c.course_name @c.course_id , @c.day_of_week @c.start_time - @c.end_time />
                     </td>
                 </tr>
-            }           
+            }
         </table>
     </div>
 

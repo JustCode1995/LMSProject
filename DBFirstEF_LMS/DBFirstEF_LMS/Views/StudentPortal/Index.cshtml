@@ -15,10 +15,8 @@
     <table>
         <tr>
             <td>
-                @*@Html.ActionLink("View Classes","ShowStudentClasses","Student")*@
-
-                <a href="@Url.Action("ShowStudentClasses","Students", new { id = Convert.ToInt32(@Session["sv_studentLogin"]) })">View Classes</a>
-
+                @*<a href="@Url.Action("ShowStudentClasses","Students", new { id = Convert.ToInt32(@Session["sv_studentLogin"]) })">View Classes</a>*@
+                @Html.ActionLink("View Classes", "StudentClassList", "Students")
             </td>
         </tr>
         <tr>

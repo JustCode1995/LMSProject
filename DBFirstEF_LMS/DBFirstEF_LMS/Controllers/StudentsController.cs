@@ -126,75 +126,174 @@ namespace DBFirstEF_LMS.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult ShowStudentClasses(int? id)
+        public ActionResult StudentClassList()
         {
-
-            if (id != null)
+            try
             {
-                ////var query = from s in db.Students
-                ////           join r in db.Registereds on s.StudentID equals r.student_id
-                ////           join sec in db.Sections on r.section_id equals sec.section_id
-                ////           join cse in db.Courses on sec.course_id equals cse.course_id
-                ////           join sem in db.Semesters on sec.semester_id equals sem.sem_id
-                ////           where s.StudentID == id
-                ////           select new
-                ////           {
-                ////               stud_id = s.StudentID,
-                ////               stud_fname = s.Fname,
-                ////               stud_lname = s.Lname,
-                ////               sec_id = r.section_id,
-                ////               sec_dow = sec.day_of_week,
-                ////               sec_stim = sec.start_time,
-                ////               sec_etim = sec.end_time,
-                ////               sem_dsc = sem.sem_desc,
-                ////               sem_sdt = sem.start_dt,
-                ////               sem_edt = sem.end_dt,
-                ////               cse_nm = cse.course_name,
-                ////               cse_dsc = cse.course_desc,
-                ////               cse_id = cse.course_id,
-                ////               cse.Department.dept_desc
-                ////           };
+                int? sid = Convert.ToInt32(Session["sv_studentLogin"]);
 
-                // query
-                var q = from s in db.Students
-                        join r in db.Registereds on s.StudentID equals r.student_id
-                        join sec in db.Sections on r.section_id equals sec.section_id
-                        join cse in db.Courses on sec.course_id equals cse.course_id
-                        join sem in db.Semesters on sec.semester_id equals sem.sem_id
-                        where s.StudentID == id
-                        group sec by new { sec.course_id, sec.section_id, cse.course_name, sec.day_of_week, sec.start_time, sec.end_time, s.StudentID, s.Fname, s.Lname } into gp
-                        select new
-                        {
-                            gp.Key.course_name, gp.Key.course_id, gp.Key.day_of_week, gp.Key.start_time, gp.Key.end_time, gp.Key.StudentID, gp.Key.Fname, gp.Key.Lname
-                        };
-
-                // create dynamic model to fix lack of reflection in anonymous type
-                List <ExpandoObject> classList = new List<ExpandoObject>();
-                List<Object> courseList = new List<Object>();
-                List<Object> listview = new List<Object>();
-                foreach (var v in q)
+                if (sid != null)
                 {
-                    IDictionary<string, object> itemExpando = new ExpandoObject();
-                    foreach(PropertyDescriptor prop in TypeDescriptor.GetProperties(v.GetType()))
+                    ////var query = from s in db.Students
+                    ////           join r in db.Registereds on s.StudentID equals r.student_id
+                    ////           join sec in db.Sections on r.section_id equals sec.section_id
+                    ////           join cse in db.Courses on sec.course_id equals cse.course_id
+                    ////           join sem in db.Semesters on sec.semester_id equals sem.sem_id
+                    ////           where s.StudentID == id
+                    ////           select new
+                    ////           {
+                    ////               stud_id = s.StudentID,
+                    ////               stud_fname = s.Fname,
+                    ////               stud_lname = s.Lname,
+                    ////               sec_id = r.section_id,
+                    ////               sec_dow = sec.day_of_week,
+                    ////               sec_stim = sec.start_time,
+                    ////               sec_etim = sec.end_time,
+                    ////               sem_dsc = sem.sem_desc,
+                    ////               sem_sdt = sem.start_dt,
+                    ////               sem_edt = sem.end_dt,
+                    ////               cse_nm = cse.course_name,
+                    ////               cse_dsc = cse.course_desc,
+                    ////               cse_id = cse.course_id,
+                    ////               cse.Department.dept_desc
+                    ////           };
+
+                    // query
+                    var q = from s in db.Students
+                            join r in db.Registereds on s.StudentID equals r.student_id
+                            join sec in db.Sections on r.section_id equals sec.section_id
+                            join cse in db.Courses on sec.course_id equals cse.course_id
+                            join sem in db.Semesters on sec.semester_id equals sem.sem_id
+                            where s.StudentID == sid
+                            group sec by new { sec.course_id, sec.section_id, cse.course_name, sec.day_of_week, sec.start_time, sec.end_time, s.StudentID, s.Fname, s.Lname } into gp
+                            select new
+                            {
+                                gp.Key.course_name,
+                                gp.Key.course_id,
+                                gp.Key.day_of_week,
+                                gp.Key.start_time,
+                                gp.Key.end_time,
+                                gp.Key.StudentID,
+                                gp.Key.Fname,
+                                gp.Key.Lname
+                            };
+
+                    // create dynamic model to fix lack of reflection in anonymous type
+                    List<ExpandoObject> classList = new List<ExpandoObject>();
+                    foreach (var v in q)
                     {
-                        itemExpando.Add(prop.Name, prop.GetValue(v));
+                        IDictionary<string, object> itemExpando = new ExpandoObject();
+                        foreach (PropertyDescriptor prop in TypeDescriptor.GetProperties(v.GetType()))
+                        {
+                            itemExpando.Add(prop.Name, prop.GetValue(v));
+                        }
+                        classList.Add(itemExpando as ExpandoObject);
                     }
-                    classList.Add(itemExpando as ExpandoObject);
-                    courseList.Add(v);
+
+                    dynamic model = new ExpandoObject();
+                    model.listofclasses = classList;
+
+                    //studentObj for student Name ease of access
+                    Student student = db.Students.Find(sid);
+                    ViewBag.studentName = student.Fname + " " + student.Lname;
+
+                    return View(model);
                 }
-
-                dynamic model = new ExpandoObject();
-                model.listofclasses = classList;
-
-                //
-                Student student = db.Students.Find(id);
-                ViewBag.studentName = student.Fname + " " + student.Lname;
-
-                return View(model);
+                else
+                {
+                    return View("StudentLogins/Login");
+                }
             }
-            else
+            catch
             {
-                return View("StudentLogins/Login");
+                ViewBag.Message = "could not convert student id to int";
+                return View();
+            }
+
+        }
+
+        public ActionResult ShowStudentClasses()
+        {
+            try
+            {
+                int? sid = Convert.ToInt32(Session["sv_studentLogin"]);
+
+                if (sid != null)
+                {
+                    ////var query = from s in db.Students
+                    ////           join r in db.Registereds on s.StudentID equals r.student_id
+                    ////           join sec in db.Sections on r.section_id equals sec.section_id
+                    ////           join cse in db.Courses on sec.course_id equals cse.course_id
+                    ////           join sem in db.Semesters on sec.semester_id equals sem.sem_id
+                    ////           where s.StudentID == id
+                    ////           select new
+                    ////           {
+                    ////               stud_id = s.StudentID,
+                    ////               stud_fname = s.Fname,
+                    ////               stud_lname = s.Lname,
+                    ////               sec_id = r.section_id,
+                    ////               sec_dow = sec.day_of_week,
+                    ////               sec_stim = sec.start_time,
+                    ////               sec_etim = sec.end_time,
+                    ////               sem_dsc = sem.sem_desc,
+                    ////               sem_sdt = sem.start_dt,
+                    ////               sem_edt = sem.end_dt,
+                    ////               cse_nm = cse.course_name,
+                    ////               cse_dsc = cse.course_desc,
+                    ////               cse_id = cse.course_id,
+                    ////               cse.Department.dept_desc
+                    ////           };
+
+                    // query
+                    var q = from s in db.Students
+                            join r in db.Registereds on s.StudentID equals r.student_id
+                            join sec in db.Sections on r.section_id equals sec.section_id
+                            join cse in db.Courses on sec.course_id equals cse.course_id
+                            join sem in db.Semesters on sec.semester_id equals sem.sem_id
+                            where s.StudentID == sid
+                            group sec by new { sec.course_id, sec.section_id, cse.course_name, sec.day_of_week, sec.start_time, sec.end_time, s.StudentID, s.Fname, s.Lname } into gp
+                            select new
+                            {
+                                gp.Key.course_name,
+                                gp.Key.course_id,
+                                gp.Key.day_of_week,
+                                gp.Key.start_time,
+                                gp.Key.end_time,
+                                gp.Key.StudentID,
+                                gp.Key.Fname,
+                                gp.Key.Lname
+                            };
+
+                    // create dynamic model to fix lack of reflection in anonymous type
+                    List<ExpandoObject> classList = new List<ExpandoObject>();
+                    foreach (var v in q)
+                    {
+                        IDictionary<string, object> itemExpando = new ExpandoObject();
+                        foreach (PropertyDescriptor prop in TypeDescriptor.GetProperties(v.GetType()))
+                        {
+                            itemExpando.Add(prop.Name, prop.GetValue(v));
+                        }
+                        classList.Add(itemExpando as ExpandoObject);
+                    }
+
+                    dynamic model = new ExpandoObject();
+                    model.listofclasses = classList;
+
+                    //studentObj for student Name ease of access
+                    Student student = db.Students.Find(sid);
+                    ViewBag.studentName = student.Fname + " " + student.Lname;
+
+                    return View(model);
+                }
+                else
+                {
+                    return View("StudentLogins/Login");
+                }
+            }
+            catch
+            {
+                ViewBag.Message = "could not convert student id to int";
+                return View();
             }
 
         }
@@ -205,59 +304,67 @@ namespace DBFirstEF_LMS.Controllers
         {
             double gpa = 0;
             int count = 1;
-
-            int? sid = Convert.ToInt32(Session["sv_studentLogin"]);
-            if (sid == null || sid == 0)
+            try
             {
-                ViewBag.Message = "Please login to view GPA.";
+                int? sid = Convert.ToInt32(Session["sv_studentLogin"]);
+                if (sid == null || sid == 0)
+                {
+                    ViewBag.Message = "Please login to view GPA.";
+                    return View();
+                }
+                //////var query = from r in db.Registereds
+                //////            where r.student_id == id
+                //////            group r by new { r.student_id, r.section_id } into nGroup
+                //////            select new
+                //////            {
+                //////                section_id = nGroup.Key.section_id,
+                //////                Total = nGroup.Sum(x)
+                //////            }
+
+                var query = from r in db.Registereds
+                            where r.student_id == sid
+                            select new
+                            {
+                                grade = r.grade
+                            };
+                foreach (var g in query)
+                {
+
+                    count++;
+                    if (g.grade >= 90 && g.grade <= 100)
+                    {
+                        gpa += 4.0;
+                    }
+                    else if (g.grade >= 80 && g.grade <= 89)
+                    {
+                        gpa += 3.0;
+                    }
+                    else if (g.grade >= 70 && g.grade <= 79)
+                    {
+                        gpa += 2.0;
+                    }
+                    else if (g.grade >= 60 && g.grade <= 69)
+                    {
+                        gpa += 1.0;
+                    }
+                    else if (g.grade < 60)
+                    {
+                        gpa += 0.0;
+                    }
+                }
+
+                gpa = gpa / (count - 1);
+                ViewBag.gpa = gpa;
+
                 return View();
             }
-            //////var query = from r in db.Registereds
-            //////            where r.student_id == id
-            //////            group r by new { r.student_id, r.section_id } into nGroup
-            //////            select new
-            //////            {
-            //////                section_id = nGroup.Key.section_id,
-            //////                Total = nGroup.Sum(x)
-            //////            }
-
-            var query = from r in db.Registereds
-                        where r.student_id == sid
-                        select new
-                        {
-                            grade = r.grade
-                        };
-            foreach (var g in query)
+            catch
             {
-
-                count++;
-                if (g.grade >= 90 && g.grade <= 100)
-                {
-                    gpa += 4.0;
-                }
-                else if (g.grade >= 80 && g.grade <= 89)
-                {
-                    gpa += 3.0;
-                }
-                else if (g.grade >= 70 && g.grade <= 79)
-                {
-                    gpa += 2.0;
-                }
-                else if (g.grade >= 60 && g.grade <= 69)
-                {
-                    gpa += 1.0;
-                }
-                else if (g.grade < 60)
-                {
-                    gpa += 0.0;
-                }
+                ViewBag.Message = "could not convert student id to int";
+                return View();
             }
-
-            gpa = gpa / (count - 1);
-            ViewBag.gpa = gpa;
-
-            return View();
         }
+
 
 
     }
