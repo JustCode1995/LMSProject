@@ -17,11 +17,12 @@ namespace DBFirstEF_LMS.Controllers
 
         public ActionResult Logout()
         {
-            var ses = Session;
-            foreach(var cs in ses)
-            {
-                Session[cs.ToString()] = null;
-            }
+            //var ses = Session;
+            //foreach(var cs in ses)
+            //{
+            //    Session[cs.ToString()] = null;
+            //}
+            Session.Clear();
 
             return View("Index");
         }
