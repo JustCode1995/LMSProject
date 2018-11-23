@@ -1,30 +1,32 @@
-﻿@model DBFirstEF_LMS.Models.Student
+﻿@model dynamic
 @{
     ViewBag.Title = "Show student classes";
 
 
 }
-<h2>Student records for @Html.DisplayFor(model => model.StudentID)</h2>
-<h3>Menu</h3>
-<div>
-    <table>          
-            @foreach (var l in ViewBag.ViewList)
+<div class="body-content">
+    <h2>Student records for @ViewBag.studentName</h2>
+    <h3>Class List</h3>
+    <br /><br /><br />
+    <div>
+        <table>
+            @foreach (var c in Model.listofclasses)
             {
                 <tr>
                     <td>
-                        @l
+                        @c.course_name @c.course_id , @c.day_of_week @c.start_time - @c.end_time
                     </td>
                 </tr>
             }
-        <tr>
-            <td>
-                here too
-            </td>
-        </tr>
-    </table>
+            <tr>
+                <td>
+                    here too
+                </td>
+            </tr>
+        </table>
+    </div>
+
 </div>
-
-
 
 
 @*looks good from here

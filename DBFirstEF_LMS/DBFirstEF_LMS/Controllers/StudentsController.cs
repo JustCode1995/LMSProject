@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
+using System.Dynamic;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -124,74 +126,71 @@ namespace DBFirstEF_LMS.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult ShowStudentClasses(int id)
+        public ActionResult ShowStudentClasses(int? id)
         {
 
             if (id != null)
             {
-                var query = from s in db.Students
-                           join r in db.Registereds on s.StudentID equals r.student_id
-                           join sec in db.Sections on r.section_id equals sec.section_id
-                           join cse in db.Courses on sec.course_id equals cse.course_id
-                           join sem in db.Semesters on sec.semester_id equals sem.sem_id
-                           where s.StudentID == id
-                           select new
-                           {
-                               stud_id = s.StudentID,
-                               stud_fname = s.Fname,
-                               stud_lname = s.Lname,
-                               sec_id = r.section_id,
-                               sec_dow = sec.day_of_week,
-                               sec_stim = sec.start_time,
-                               sec_etim = sec.end_time,
-                               sem_dsc = sem.sem_desc,
-                               sem_sdt = sem.start_dt,
-                               sem_edt = sem.end_dt,
-                               cse_nm = cse.course_name,
-                               cse_dsc = cse.course_desc,
-                               cse_id = cse.course_id,
-                               cse.Department.dept_desc
-                           };
+                ////var query = from s in db.Students
+                ////           join r in db.Registereds on s.StudentID equals r.student_id
+                ////           join sec in db.Sections on r.section_id equals sec.section_id
+                ////           join cse in db.Courses on sec.course_id equals cse.course_id
+                ////           join sem in db.Semesters on sec.semester_id equals sem.sem_id
+                ////           where s.StudentID == id
+                ////           select new
+                ////           {
+                ////               stud_id = s.StudentID,
+                ////               stud_fname = s.Fname,
+                ////               stud_lname = s.Lname,
+                ////               sec_id = r.section_id,
+                ////               sec_dow = sec.day_of_week,
+                ////               sec_stim = sec.start_time,
+                ////               sec_etim = sec.end_time,
+                ////               sem_dsc = sem.sem_desc,
+                ////               sem_sdt = sem.start_dt,
+                ////               sem_edt = sem.end_dt,
+                ////               cse_nm = cse.course_name,
+                ////               cse_dsc = cse.course_desc,
+                ////               cse_id = cse.course_id,
+                ////               cse.Department.dept_desc
+                ////           };
 
+                // query
+                var q = from s in db.Students
+                        join r in db.Registereds on s.StudentID equals r.student_id
+                        join sec in db.Sections on r.section_id equals sec.section_id
+                        join cse in db.Courses on sec.course_id equals cse.course_id
+                        join sem in db.Semesters on sec.semester_id equals sem.sem_id
+                        where s.StudentID == id
+                        group sec by new { sec.course_id, sec.section_id, cse.course_name, sec.day_of_week, sec.start_time, sec.end_time, s.StudentID, s.Fname, s.Lname } into gp
+                        select new
+                        {
+                            gp.Key.course_name, gp.Key.course_id, gp.Key.day_of_week, gp.Key.start_time, gp.Key.end_time, gp.Key.StudentID, gp.Key.Fname, gp.Key.Lname
+                        };
 
+                // create dynamic model to fix lack of reflection in anonymous type
+                List <ExpandoObject> classList = new List<ExpandoObject>();
+                List<Object> courseList = new List<Object>();
                 List<Object> listview = new List<Object>();
-                foreach(var v in query)
+                foreach (var v in q)
                 {
-                    listview.Add(v.sec_dow);
-                    listview.Add(v.sec_stim);
-                    listview.Add(v.sec_etim);
-                    listview.Add(v.cse_nm);
-                    listview.Add(v.cse_id);
-
-                    ViewBag.ViewList = listview;
+                    IDictionary<string, object> itemExpando = new ExpandoObject();
+                    foreach(PropertyDescriptor prop in TypeDescriptor.GetProperties(v.GetType()))
+                    {
+                        itemExpando.Add(prop.Name, prop.GetValue(v));
+                    }
+                    classList.Add(itemExpando as ExpandoObject);
+                    courseList.Add(v);
                 }
 
+                dynamic model = new ExpandoObject();
+                model.listofclasses = classList;
 
-                //List<Section> listofSections = new List<Section>();
-                //List<Course> listofCourses = new List<Course>();
-                //List<SelectListItem> listSectionCourse = new List<SelectListItem>();
+                //
                 Student student = db.Students.Find(id);
+                ViewBag.studentName = student.Fname + " " + student.Lname;
 
-                //foreach (var item in query)
-                //{
-                //    listofSections.Add(db.Sections.Find(Convert.ToInt32(item.sec_id)));
-                //    listofCourses.Add(db.Courses.Find(Convert.ToInt32(item.cse_id)));
-                //    //listSectionCourse.Add(db.Sections.Find(Convert.ToInt32(item.sec_id)),db.Courses.Find(Convert.ToInt32(item.cse_id)))
-                //}
-
-                //List<SelectListItem> listSectionCourse = new List<SelectListItem>();
-                //foreach (var item in quer)
-                //{
-                //    listSectionCourse.Add(new SelectListItem { Value = , Text = item.stud_id.ToString() });
-                //}
-                //ViewBag.stdregList = stdreg;
-
-                //ViewBag.Sections = listofSections;
-                //ViewBag.Courses = listofCourses;
-                //ViewBag.Student = student;
-                //ViewBag.Query = query;
-
-                return View(student);
+                return View(model);
             }
             else
             {
@@ -207,7 +206,7 @@ namespace DBFirstEF_LMS.Controllers
             double gpa = 0;
             int count = 1;
 
-            int sid = Convert.ToInt32(Session["sv_studentLogin"]);
+            int? sid = Convert.ToInt32(Session["sv_studentLogin"]);
             if (sid == null || sid == 0)
             {
                 ViewBag.Message = "Please login to view GPA.";
