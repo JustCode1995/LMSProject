@@ -11,6 +11,11 @@ namespace DBFirstEF_LMS.Controllers
         // GET: StudentPortal
         public ActionResult Index()
         {
+            int? sid = Convert.ToInt32(Session["sv_studentLogin"]);
+            if (sid == null || sid == 0)
+            {
+                return RedirectToAction("Login", "StudentLogins");
+            }
             return View();
         }
     }

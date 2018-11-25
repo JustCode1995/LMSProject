@@ -11,9 +11,9 @@
     <table class="table-hover">
         @foreach (var c in Model.listofclasses)
         {
-            <tr>
+            <tr data-href="">
                 <td>
-                    @c.course_name @c.course_id , @c.day_of_week @c.start_time - @c.end_time
+                     @c.course_name @c.course_id , @c.day_of_week @c.start_time - @c.end_time
                 </td>
             </tr>
         }

@@ -129,7 +129,7 @@ namespace DBFirstEF_LMS.Controllers
         public ActionResult ShowStudentClasses(int? id)
         {
             int? sid = Convert.ToInt32(Session["sv_studentLogin"]);
-            if (sid != null)
+            if (sid != null && sid != 0)
             {
                 ////var query = from s in db.Students
                 ////           join r in db.Registereds on s.StudentID equals r.student_id
@@ -187,14 +187,14 @@ namespace DBFirstEF_LMS.Controllers
                 model.listofclasses = classList;
 
                 //
-                Student student = db.Students.Find(id);
+                Student student = db.Students.Find(sid);
                 ViewBag.studentName = student.Fname + " " + student.Lname;
 
                 return View(model);
             }
             else
             {
-                return View("StudentLogins/Login");
+                return RedirectToAction("Login", "StudentLogins");
             }
 
         }
@@ -257,11 +257,28 @@ namespace DBFirstEF_LMS.Controllers
             return View();
         }
 
-        public ActionResult StudentClass()
+        public ActionResult StudentClass(int? id)
         {
             int? sid = Convert.ToInt32(Session["sv_studentLogin"]);
-            var student_Assignment = db.Student_Assignment.Include(s => s.Assignment.Section.Course).Include(s => s.Assignment).Include(s => s.Section).Include(s => s.Student).Where(s => s.studentID == sid);
-            return View(student_Assignment.ToList());
+            if (sid == null || sid == 0)
+            {
+                ViewBag.Message = "Please login to view classes.";
+                return View();
+            }
+            else
+            {
+                int? sectionid = id;
+                if (id == null)
+                {
+                    var student_Assignment = db.Student_Assignment.Include(s => s.Assignment.Section.Course).Include(s => s.Assignment).Include(s => s.Section).Include(s => s.Student).Where(s => s.studentID == sid);
+                    return View(student_Assignment.ToList());
+                }
+                else
+                {
+                    var student_Assignment = db.Student_Assignment.Include(s => s.Assignment.Section.Course).Include(s => s.Assignment).Include(s => s.Section).Include(s => s.Student).Where(s => s.studentID == sid && s.section_id == sectionid);
+                    return View(student_Assignment.ToList());
+                }
+            }
         }
 
 
