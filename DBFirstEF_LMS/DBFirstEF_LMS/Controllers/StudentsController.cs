@@ -257,7 +257,7 @@ namespace DBFirstEF_LMS.Controllers
             return View();
         }
 
-        public ActionResult StudentCourses()
+        public ActionResult StudentClass()
         {
             return View();
         }

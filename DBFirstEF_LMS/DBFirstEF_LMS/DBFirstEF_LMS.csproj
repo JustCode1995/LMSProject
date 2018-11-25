@@ -136,6 +136,7 @@
     <Compile Include="Controllers\RegisteredsController.cs" />
     <Compile Include="Controllers\SectionsController.cs" />
     <Compile Include="Controllers\StaffLoginsController.cs" />
+    <Compile Include="Controllers\Student_AssignmentController.cs" />
     <Compile Include="Controllers\TeacherPortal.cs" />
     <Compile Include="Controllers\StaffPortalController.cs" />
     <Compile Include="Controllers\StudentLoginsController.cs" />
@@ -256,6 +257,11 @@
     <Content Include="Views\Assignments\Edit.cshtml" />
     <Content Include="Views\Assignments\Index.cshtml" />
     <Content Include="Views\Students\ShowGPA.cshtml" />
+    <Content Include="Views\Student_Assignment\Create.cshtml" />
+    <Content Include="Views\Student_Assignment\Delete.cshtml" />
+    <Content Include="Views\Student_Assignment\Details.cshtml" />
+    <Content Include="Views\Student_Assignment\Edit.cshtml" />
+    <Content Include="Views\Student_Assignment\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
