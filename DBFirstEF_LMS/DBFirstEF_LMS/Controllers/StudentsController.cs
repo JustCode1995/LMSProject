@@ -128,8 +128,8 @@ namespace DBFirstEF_LMS.Controllers
 
         public ActionResult ShowStudentClasses(int? id)
         {
-
-            if (id != null)
+            int? sid = Convert.ToInt32(Session["sv_studentLogin"]);
+            if (sid != null)
             {
                 ////var query = from s in db.Students
                 ////           join r in db.Registereds on s.StudentID equals r.student_id
@@ -161,7 +161,7 @@ namespace DBFirstEF_LMS.Controllers
                         join sec in db.Sections on r.section_id equals sec.section_id
                         join cse in db.Courses on sec.course_id equals cse.course_id
                         join sem in db.Semesters on sec.semester_id equals sem.sem_id
-                        where s.StudentID == id
+                        where s.StudentID == sid
                         group sec by new { sec.course_id, sec.section_id, cse.course_name, sec.day_of_week, sec.start_time, sec.end_time, s.StudentID, s.Fname, s.Lname } into gp
                         select new
                         {
