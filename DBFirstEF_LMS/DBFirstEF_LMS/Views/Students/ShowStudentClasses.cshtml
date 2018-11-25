@@ -11,9 +11,10 @@
     <table class="table-hover">
         @foreach (var c in Model.listofclasses)
         {
-            <tr data-href="">
+            <tr >@*data-href="@Url.Action("StudentClass","Students", new { id = Convert.ToInt32(@c.section_id) })">*@
                 <td>
-                     @c.course_name @c.course_id , @c.day_of_week @c.start_time - @c.end_time
+                    @*@c.course_name @c.course_id , @c.day_of_week @c.start_time - @c.end_time @c.section_id*@
+                    <a href="@Url.Action("StudentClass","Students", new { id = Convert.ToInt32(@c.section_id) })">@c.course_name @c.course_id , @c.day_of_week @c.start_time - @c.end_time @c.section_id</a>
                 </td>
             </tr>
         }

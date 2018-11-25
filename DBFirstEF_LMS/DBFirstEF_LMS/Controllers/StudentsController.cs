@@ -165,7 +165,7 @@ namespace DBFirstEF_LMS.Controllers
                         group sec by new { sec.course_id, sec.section_id, cse.course_name, sec.day_of_week, sec.start_time, sec.end_time, s.StudentID, s.Fname, s.Lname } into gp
                         select new
                         {
-                            gp.Key.course_name, gp.Key.course_id, gp.Key.day_of_week, gp.Key.start_time, gp.Key.end_time, gp.Key.StudentID, gp.Key.Fname, gp.Key.Lname
+                            gp.Key.course_name, gp.Key.course_id, gp.Key.day_of_week, gp.Key.start_time, gp.Key.end_time, gp.Key.StudentID, gp.Key.Fname, gp.Key.Lname, gp.Key.section_id
                         };
 
                 // create dynamic model to fix lack of reflection in anonymous type
