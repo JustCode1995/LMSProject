@@ -199,8 +199,6 @@ namespace DBFirstEF_LMS.Controllers
 
         }
 
-
-
         public ActionResult ShowGPA()
         {
             double gpa = 0;
@@ -256,6 +254,11 @@ namespace DBFirstEF_LMS.Controllers
             gpa = gpa / (count - 1);
             ViewBag.gpa = gpa;
 
+            return View();
+        }
+
+        public ActionResult StudentCourses()
+        {
             return View();
         }
 
