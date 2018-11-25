@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using DBFirstEF_LMS.Models;
 
-namespace DBFirstEF_LMS
+namespace DBFirstEF_LMS.Controllers
 {
     public class AssignmentsController : Controller
     {
