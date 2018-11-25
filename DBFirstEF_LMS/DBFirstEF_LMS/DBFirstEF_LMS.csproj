@@ -265,6 +265,7 @@
     <Content Include="Views\Assignments\Edit.cshtml" />
     <Content Include="Views\Assignments\Index.cshtml" />
     <Content Include="Views\Staffs\ShowTeacherClasses.cshtml" />
+    <Content Include="Views\Staffs\StaffClass.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

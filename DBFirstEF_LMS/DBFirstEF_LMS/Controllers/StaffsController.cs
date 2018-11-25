@@ -187,5 +187,32 @@ namespace DBFirstEF_LMS
                 return RedirectToAction("Login", "StaffLogins");
             }
         }
+
+        public ActionResult StaffClass(int? id)
+        {
+            int? sid = Convert.ToInt32(Session["sv_staffLogin"]);
+            if (sid == null || sid == 0)
+            {
+                ViewBag.Message = "Please login to view classes.";
+                return View();
+            }
+            else
+            {
+                int? sectionid = id;
+                if (id == null)
+                {
+                    var staff_assignment = db.Assignments.Include(a => a.Section.Course).Include(a => a.Section).Include(a => a.Section.Staff).Where(a => a.Section.Staff.staff_id == sid);
+                    return View(staff_assignment);
+                }
+                else
+                {
+                    var staff_assignment = db.Assignments.Include(a => a.Section.Course).Include(a => a.Section).Include(a => a.Section.Staff).Where(a => a.Section.Staff.staff_id == sid && a.section_id == sectionid);
+                    return View(staff_assignment);
+                }
+            }
+        }
+
+
+
     }
 }
