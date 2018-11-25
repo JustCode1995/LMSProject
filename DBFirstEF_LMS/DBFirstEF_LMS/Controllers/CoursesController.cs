@@ -128,32 +128,5 @@ namespace DBFirstEF_LMS.Controllers
             }
             base.Dispose(disposing);
         }
-
-        public ActionResult StudentCourses()
-        {
-            int? sid = Convert.ToInt32(Session["sv_studentLogin"]);
-            if (sid == null || sid == 0)
-            {
-                ViewBag.Message = "Please login to view GPA.";
-                return View();
-            }
-            //query
-            var q = from s in db.Students
-                join r in db.Registereds on s.StudentID equals r.student_id
-                join sec in db.Sections on r.section_id equals sec.section_id
-                join cse in db.Courses on sec.course_id equals cse.course_id
-                join sasgn in db.Student_Assignment on s.StudentID equals sasgn.studentID
-                join asgn in db.Assignments on sasgn.assignment_id equals asgn.assignment_id
-                where s.StudentID == sid
-                group sec by new {sec.section_id, cse.course_id, sasgn.assignment_id, sasgn.studentID, asgn.assignment_name, asgn.assignment_due_dt, asgn.assignment_open_dt, cse.course_name, sasgn.grade } into gp
-                select new
-                {
-                    gp.Key.course_name, gp.Key.assignment_id, gp.Key.course_id, gp.Key.assignment_open_dt, gp.Key.assignment_due_dt, gp.Key.grade
-                };
-            // dynamic model
-          
-
-            return View();
-        }
     }
 }
