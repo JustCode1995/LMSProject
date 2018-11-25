@@ -17,7 +17,15 @@ namespace DBFirstEF_LMS.Controllers
         // GET: Student_Assignment
         public ActionResult Index()
         {
-            var student_Assignment = db.Student_Assignment.Include(s => s.Assignment).Include(s => s.Section).Include(s => s.Student);
+            int? sid = Convert.ToInt32(Session["sv_studentLogin"]);
+            var student_Assignment = db.Student_Assignment.Include(s => s.Assignment.Section.Course).Include(s => s.Assignment).Include(s => s.Section).Include(s => s.Student).Where(s => s.studentID == sid);
+            return View(student_Assignment.ToList());
+        }
+
+        public ActionResult ClassDetails()
+        {
+            int? sid = Convert.ToInt32(Session["sv_studentLogin"]);
+            var student_Assignment = db.Student_Assignment.Include(s => s.Assignment.Section.Course).Include(s => s.Assignment).Include(s => s.Section).Include(s => s.Student).Where(s => s.studentID == sid);
             return View(student_Assignment.ToList());
         }
 

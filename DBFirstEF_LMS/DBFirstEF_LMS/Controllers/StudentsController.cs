@@ -259,7 +259,9 @@ namespace DBFirstEF_LMS.Controllers
 
         public ActionResult StudentClass()
         {
-            return View();
+            int? sid = Convert.ToInt32(Session["sv_studentLogin"]);
+            var student_Assignment = db.Student_Assignment.Include(s => s.Assignment.Section.Course).Include(s => s.Assignment).Include(s => s.Section).Include(s => s.Student).Where(s => s.studentID == sid);
+            return View(student_Assignment.ToList());
         }
 
 
