@@ -210,6 +210,9 @@ namespace DBFirstEF_LMS.Controllers
                 ViewBag.Message = "Please login to view GPA.";
                 return View();
             }
+            else {
+                ViewBag.Message = "Your current year-to-date GPA is: ";
+                  }
             //////var query = from r in db.Registereds
             //////            where r.student_id == id
             //////            group r by new { r.student_id, r.section_id } into nGroup
