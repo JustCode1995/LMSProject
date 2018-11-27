@@ -4,16 +4,31 @@
     ViewBag.Title = "Login";
 }
 
-@ViewBag.LoginSuccess
+<div class="body-content">
 
-<br /><br />
-@using (Html.BeginForm("Login", "StudentLogins", FormMethod.Post))
-{
-    @Html.Label("Student ID: ")
-    <input type="text" name="studentID" id="studentID" />
-    <br />
-    @Html.Label("Password: ")
-    <input type="password" name="studentPass" id="studentPass" />
-    <br />
-    <input type="submit" value="Login" />
-}
+    @ViewBag.LoginSuccess
+    <br /><br />
+    @using (Html.BeginForm("Login", "StudentLogins", FormMethod.Post))
+    {
+        <table class="table-responsive">
+            <tr>
+                <td>
+                    @Html.Label("Student ID: ")
+                </td>
+                <td>
+                    <input type="text" name="studentID" id="studentID" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.Label("Password: ")
+                </td>
+                <td>
+                    <input type="password" name="studentPass" id="studentPass" />
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="Login" />
+    }
+
+</div>

@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using DBFirstEF_LMS.Models;
 
-namespace DBFirstEF_LMS
+namespace DBFirstEF_LMS.Controllers
 {
     public class AssignmentsController : Controller
     {
@@ -37,9 +37,26 @@ namespace DBFirstEF_LMS
         }
 
         // GET: Assignments/Create
-        public ActionResult Create()
+        //public ActionResult Create()
+        //{
+        //    ViewBag.section_id = new SelectList(db.Sections);
+        //    return View();
+        //}
+
+        public ActionResult Create(int? id)
         {
-            ViewBag.section_id = new SelectList(db.Sections, "section_id", "day_of_week");
+            ViewBag.section_id = new SelectList(db.Sections);
+            if (id == null || (id.ToString().Length < 1))
+            {                
+                var dict = new Dictionary<int, string>();
+                foreach(var v in db.Sections.Include(s => s.Course).Select(i => new { i.section_id, i.Course.course_name}).ToList())
+                {
+                    dict.Add(v.section_id, v.section_id + " " + v.course_name);
+                }                
+                ViewBag.sectionlist = new SelectList(dict, "Key", "Value");
+                return this.View();
+            }
+            ViewBag.sectionlist = new SelectList(new[] { id });
             return View();
         }
 
@@ -52,6 +69,7 @@ namespace DBFirstEF_LMS
         {
             if (ModelState.IsValid)
             {
+                //assignment.section_id = 
                 db.Assignments.Add(assignment);
                 db.SaveChanges();
                 return RedirectToAction("Index");

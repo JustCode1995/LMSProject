@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
@@ -22,7 +21,13 @@
             @Html.DisplayNameFor(model => model.assignment_open_dt)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Section.day_of_week)
+            @Html.DisplayNameFor(model => model.Section.Course.course_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Section.Course.course_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Section.section_id)
         </th>
         <th></th>
     </tr>
@@ -39,12 +44,18 @@
             @Html.DisplayFor(modelItem => item.assignment_open_dt)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Section.day_of_week)
+            @Html.DisplayFor(modelItem => item.Section.Course.course_name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.assignment_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.assignment_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.assignment_id })
+            @Html.DisplayFor(modelItem => item.Section.Course.course_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Section.section_id)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.assignment_id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.assignment_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.assignment_id })
         </td>
     </tr>
 }

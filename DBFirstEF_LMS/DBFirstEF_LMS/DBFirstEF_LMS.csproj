@@ -1,4 +1,5 @@
-﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -129,12 +130,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="AssignmentsController.cs" />
+    <Compile Include="Controllers\AssignmentsController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegisteredsController.cs" />
     <Compile Include="Controllers\SectionsController.cs" />
     <Compile Include="Controllers\StaffLoginsController.cs" />
+    <Compile Include="Controllers\Student_AssignmentController.cs" />
     <Compile Include="Controllers\TeacherPortal.cs" />
     <Compile Include="Controllers\StaffPortalController.cs" />
     <Compile Include="Controllers\StudentLoginsController.cs" />
@@ -252,16 +254,21 @@
     <Content Include="Views\Staffs\Edit.cshtml" />
     <Content Include="Views\Staffs\Index.cshtml" />
     <Content Include="Views\TeacherPortal\Index.cshtml" />
-    <Content Include="Views\Assignments\Create.cshtml" />
-    <Content Include="Views\Assignments\Delete.cshtml" />
-    <Content Include="Views\Assignments\Details.cshtml" />
-    <Content Include="Views\Assignments\Edit.cshtml" />
-    <Content Include="Views\Assignments\Index.cshtml" />
+    <Content Include="Views\Students\ShowGPA.cshtml" />
     <Content Include="Views\Student_Assignment\Create.cshtml" />
     <Content Include="Views\Student_Assignment\Delete.cshtml" />
     <Content Include="Views\Student_Assignment\Details.cshtml" />
     <Content Include="Views\Student_Assignment\Edit.cshtml" />
     <Content Include="Views\Student_Assignment\Index.cshtml" />
+    <Content Include="Views\Students\StudentClass.cshtml" />
+    <Content Include="Views\Student_Assignment\ClassDetails.cshtml" />
+    <Content Include="Views\Assignments\Create.cshtml" />
+    <Content Include="Views\Assignments\Delete.cshtml" />
+    <Content Include="Views\Assignments\Details.cshtml" />
+    <Content Include="Views\Assignments\Edit.cshtml" />
+    <Content Include="Views\Assignments\Index.cshtml" />
+    <Content Include="Views\Staffs\ShowTeacherClasses.cshtml" />
+    <Content Include="Views\Staffs\StaffClass.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -286,7 +293,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>59640</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
@@ -306,7 +313,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

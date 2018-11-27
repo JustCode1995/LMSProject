@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
+using System.Dynamic;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -132,5 +134,85 @@ namespace DBFirstEF_LMS
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult ShowTeacherClasses(int? id)
+        {
+            int? sid = Convert.ToInt32(Session["sv_staffLogin"]);
+            if (sid != null && sid != 0)
+            {
+                var q = from s in db.Staffs
+                        join sec in db.Sections on s.staff_id equals sec.teacher_id
+                        join cse in db.Courses on sec.course_id equals cse.course_id
+                        where s.staff_id == sid
+                        group sec by new { sec.course_id, sec.section_id, cse.course_name, sec.day_of_week, sec.start_time, sec.end_time, s.staff_id, s.first_name, s.last_name } into gp
+                        select new
+                        {
+                            gp.Key.course_name,
+                            gp.Key.course_id,
+                            gp.Key.day_of_week,
+                            gp.Key.start_time,
+                            gp.Key.end_time,
+                            gp.Key.staff_id,
+                            gp.Key.first_name,
+                            gp.Key.last_name,
+                            gp.Key.section_id
+                        };
+
+                // create dynamic model to fix lack of reflection in anonymous type
+                List<ExpandoObject> classList = new List<ExpandoObject>();
+                List<Object> courseList = new List<Object>();
+                List<Object> listview = new List<Object>();
+                foreach (var v in q)
+                {
+                    IDictionary<string, object> itemExpando = new ExpandoObject();
+                    foreach (PropertyDescriptor prop in TypeDescriptor.GetProperties(v.GetType()))
+                    {
+                        itemExpando.Add(prop.Name, prop.GetValue(v));
+                    }
+                    classList.Add(itemExpando as ExpandoObject);
+                    courseList.Add(v);
+                }
+
+                dynamic model = new ExpandoObject();
+                model.listofclasses = classList;
+
+                //
+                Staff staff = db.Staffs.Find(sid);
+                ViewBag.staffName = staff.first_name + " " + staff.last_name;
+
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Login", "StaffLogins");
+            }
+        }
+
+        public ActionResult StaffClass(int? id)
+        {
+            int? sid = Convert.ToInt32(Session["sv_staffLogin"]);
+            if (sid == null || sid == 0)
+            {
+                ViewBag.Message = "Please login to view classes.";
+                return View();
+            }
+            else
+            {
+                int? sectionid = id;
+                if (id == null)
+                {
+                    var staff_assignment = db.Assignments.Include(a => a.Section.Course).Include(a => a.Section).Include(a => a.Section.Staff).Where(a => a.Section.Staff.staff_id == sid);
+                    return View(staff_assignment);
+                }
+                else
+                {
+                    var staff_assignment = db.Assignments.Include(a => a.Section.Course).Include(a => a.Section).Include(a => a.Section.Staff).Where(a => a.Section.Staff.staff_id == sid && a.section_id == sectionid);
+                    return View(staff_assignment);
+                }
+            }
+        }
+
+
+
     }
 }

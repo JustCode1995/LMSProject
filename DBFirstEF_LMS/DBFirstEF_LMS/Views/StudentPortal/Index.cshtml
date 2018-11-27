@@ -6,19 +6,25 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="body-content">
+    <h2>Student Portal</h2>
 
-<h2>Student Portal</h2>
-
-<p>Hello from our View Template!</p>
+    <p>Hello from our View Template!</p>
 
 
-<table>
-    <tr>
-        <td>
-            @*@Html.ActionLink("View Classes","ShowStudentClasses","Student")*@
+    <table>
+        <tr>
+            <td>
+                @Html.ActionLink("View Classes", "ShowStudentClasses", "Students")
 
-            <a href="@Url.Action("ShowStudentClasses","Students", new { id = Convert.ToInt32(@Session["sv_studentLogin"]) })" >View Classes</a>
-       
-        </td>
-    </tr>
-</table>
+                @*<a href="@Url.Action("ShowStudentClasses","Students", new { id = Convert.ToInt32(@Session["sv_studentLogin"]) })">View Classes</a>*@
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Calculate and View GPA", "ShowGPA", "Students")
+            </td>
+        </tr>
+    </table>
+</div>

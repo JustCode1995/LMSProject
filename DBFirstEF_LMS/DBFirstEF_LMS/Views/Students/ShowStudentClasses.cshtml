@@ -1,121 +1,23 @@
-﻿@model DBFirstEF_LMS.Models.Student
+﻿@model dynamic
 @{
     ViewBag.Title = "Show student classes";
 
+
 }
-
-@*looks good from here
-    <h2>
-        Courses for @Html.DisplayFor(model => model.Fname) @Html.DisplayFor(model => model.Lname)
-    </h2>
-
-    @foreach (var secn in ViewBag.Sections)
-    {
-        <tr>
-            <td>
-                @secn.section_id
-            </td>
-        </tr>
-
-    }
-    @foreach (var course in ViewBag.Courses)
-    {
-       <tr>
-        <td>
-            @course.course_id
-        </td>
-           <td>
-               @course.course_name
-           </td>
-           <br />
-           <td>
-               @course.course_desc
-           </td>
-       </tr>
-    }
-    end looks good*@
-
-
-
-<table>
-    <tr>
-        <td>
-            <table>
-                <thead>
-                    <tr>
-                        <td>column 1 header 1</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var secn in ViewBag.Sections)
-                    {
-                        <tr>
-                            <td>
-                                @secn.section_id
-                            </td>
-                        </tr>
-
-                    }
-                </tbody>
-            </table>
-        </td>
-        <td>
-            <table>
-                <thead>
-                    <tr>
-                        <td>column 2 header 1</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var course in ViewBag.Courses)
-                    {
-                        <tr>
-                            <td>
-                                @course.course_id
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </td>
-        <td>
-            <table>
-                <thead>
-                    <tr>
-                        <td>column 3 header 1</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var course in ViewBag.Courses)
-                    {
-                        <tr>
-                            <td>
-                                @course.course_name
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </td>
-        <td>
-            <table>
-                <thead>
-                    <tr>
-                        <td>column 4 header 1</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <a href="@Url.Action("Action","Controller")"> <input type="button" value="Class Details" /> </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </td>
-    </tr>
-</table>
-
-
-
-
+<div class="body-content">
+    <h2>Student records for @ViewBag.studentName</h2>
+    <h3>Class List</h3>
+    <br />
+    <table class="table-hover">
+        @foreach (var c in Model.listofclasses)
+        {
+            <tr >@*data-href="@Url.Action("StudentClass","Students", new { id = Convert.ToInt32(@c.section_id) })">*@
+                <td>
+                    @*@c.course_name @c.course_id , @c.day_of_week @c.start_time - @c.end_time @c.section_id*@
+                    <a href="@Url.Action("StudentClass","Students", new { id = Convert.ToInt32(@c.section_id) })">@c.course_name @c.course_id , @c.day_of_week @c.start_time - @c.end_time @c.section_id</a>
+                </td>
+            </tr>
+        }
+        
+    </table>
+</div>
