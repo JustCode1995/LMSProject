@@ -66,13 +66,13 @@ namespace DBFirstEF_LMS.Controllers
         }
 
         // GET: StudentAssignments/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? secid, int? aid, int? sid)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            StudentAssignment studentAssignment = db.StudentAssignments.Find(id);
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            StudentAssignment studentAssignment = db.StudentAssignments.Find(secid,aid,sid);
             if (studentAssignment == null)
             {
                 return HttpNotFound();
