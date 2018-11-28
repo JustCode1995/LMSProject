@@ -3,10 +3,12 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
 }
+<p>
 
+</p>
 <h2>Teacher Portal</h2>
 
-<h3>Courses</h3>
+<h3>&#9656; Courses</h3>
 <div>
     <!--
     @Html.ActionLink("Add Assignment Student", "Create", "Assignments") <br />
@@ -18,11 +20,11 @@
         @Html.ActionLink("View Student Details", "Details", "Students")<br />
     -->
    @* @Html.ActionLink("My Courses", "ShowTeacherClasses", "Staffs")<br />*@
-    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("ShowTeacherClasses","Staffs")'">My Courses</button><br />
+    <button  type="button" class="btn btn-primary" onclick="location.href='@Url.Action("ShowTeacherClasses","Staffs")'">My Courses</button><br />
 
 </div>
 
-<h3>Student Assignment</h3>
+<h3>&#9656; Student Assignment</h3>
 
 <div>
     <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Create","Assignments")'">Add Student Assignment</button><br/>
@@ -40,7 +42,7 @@
 
 
 
-<h3>Student Submit Grade</h3>
+<h3>&#9656; Student Submit Grade</h3>
 <div>
    @* @Html.ActionLink("Add Student Grade", "Create", "Student_Assignment") <br />*@
     <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Create","Student_Assignments")'">Add Student Grade</button><br />
