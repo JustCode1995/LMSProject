@@ -25,6 +25,9 @@
             Course Name
         </th>
         <th>
+            Section ID
+        </th>
+        <th>
             Day of the Week
         </th>
         <th>
@@ -51,15 +54,18 @@
             @Html.DisplayFor(modelItem => item.Section.Course.course_name)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Section.section_id)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Section.day_of_week)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.grade)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { sectionid = item.section_id, studentid = item.student_id }) |
+            @Html.ActionLink("Details", "Details", new { sectionid = item.section_id, studentid = item.student_id }) |
+            @Html.ActionLink("DeRegister", "Delete", new { sectionid = item.section_id, studentid = item.student_id })
         </td>
     </tr>
 }

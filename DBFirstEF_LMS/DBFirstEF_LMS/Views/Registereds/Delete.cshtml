@@ -13,7 +13,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.grade)
+            Grade
         </dt>
 
         <dd>
@@ -21,15 +21,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Section.day_of_week)
+            Course Section
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Section.day_of_week)
+            @Html.DisplayFor(model => model.Section.Course.course_name)  @Html.DisplayFor(model => model.Section.section_id)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Student.Fname)
+            First Name
         </dt>
 
         <dd>
