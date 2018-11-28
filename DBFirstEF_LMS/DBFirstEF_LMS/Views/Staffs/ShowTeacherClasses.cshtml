@@ -1,13 +1,14 @@
 ﻿@model dynamic
 @{
     ViewBag.Title = "Show staff classes";
+    Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
 
 
 }
 <div class="body-content">
-    <h2>Staff records for @ViewBag.staffName</h2>
-    <h3>Class List</h3>
-    <br />
+    <h2>Staff records for: @ViewBag.staffName</h2>
+    <h3>Class List:</h3>
+    
     <table class="table-hover">
         @foreach (var c in Model.listofclasses)
         {
@@ -15,7 +16,7 @@
                 @*data-href="@Url.Action("StudentClass","Students", new { id = Convert.ToInt32(@c.section_id) })">*@
             <td>
                 @*@c.course_name @c.course_id , @c.day_of_week @c.start_time - @c.end_time @c.section_id*@
-                <a href="@Url.Action("StaffClass","Staffs", new { id = Convert.ToInt32(@c.section_id) })">@c.course_name @c.course_id , @c.day_of_week @c.start_time - @c.end_time @c.section_id</a>
+                <a href="@Url.Action("StaffClass","Staffs", new { id = Convert.ToInt32(@c.section_id) })">@c.course_name | @c.course_id | @c.day_of_week | @c.start_time - @c.end_time | @c.section_id</a>
             </td>
         </tr>
     }
