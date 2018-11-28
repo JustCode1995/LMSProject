@@ -212,36 +212,36 @@ namespace DBFirstEF_LMS
             }
         }
 
-        public ActionResult AssignmentGrade()
-        {
-            int? sid = Convert.ToInt32(Session["sv_staffLogin"]);
-            if (sid == null || sid == 0)
-            {
-                ViewBag.Message = "Please login to edit assignments.";
-                return View();
-            }
-            else
-            {
-                Student_Assignment sassigns = new Student_Assignment();
-                var query = db.Student_Assignment.Include(a => a.Assignment).Include(a => a.Student).Include(a => a.Section).Include(a => a.Section.Course).Where(a => a.Section.teacher_id == sid);
-                return View();
-            }
-        }
+        //public ActionResult AssignmentGrade()
+        //{
+        //    int? sid = Convert.ToInt32(Session["sv_staffLogin"]);
+        //    if (sid == null || sid == 0)
+        //    {
+        //        ViewBag.Message = "Please login to edit assignments.";
+        //        return View();
+        //    }
+        //    else
+        //    {
+        //        StudentAssignment sassigns = new StudentAssignment();
+        //        var query = db.StudentAssignment.Include(a => a.Assignment).Include(a => a.Student).Include(a => a.Section).Include(a => a.Section.Course).Where(a => a.Section.teacher_id == sid);
+        //        return View();
+        //    }
+        //}
 
-        [HttpPost]
-        public ActionResult AssignmentGrade([Bind(Include = "section_id,assignment_id,studentID,grade")] Student_Assignment student_Assignment)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(student_Assignment).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.assignment_id = new SelectList(db.Assignments, "assignment_id", "assignment_name", student_Assignment.assignment_id);
-            ViewBag.section_id = new SelectList(db.Sections, "section_id", "day_of_week", student_Assignment.section_id);
-            ViewBag.studentID = new SelectList(db.Students, "StudentID", "Fname", student_Assignment.studentID);
-            return View(student_Assignment);
-        }
+        //[HttpPost]
+        //public ActionResult AssignmentGrade([Bind(Include = "section_id,assignment_id,studentID,grade")] StudentAssignment student_Assignment)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(student_Assignment).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    ViewBag.assignment_id = new SelectList(db.Assignments, "assignment_id", "assignment_name", student_Assignment.assignment_id);
+        //    ViewBag.section_id = new SelectList(db.Sections, "section_id", "day_of_week", student_Assignment.section_id);
+        //    ViewBag.studentID = new SelectList(db.Students, "StudentID", "Fname", student_Assignment.studentID);
+        //    return View(student_Assignment);
+        //}
 
 
 

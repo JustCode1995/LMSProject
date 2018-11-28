@@ -273,12 +273,12 @@ namespace DBFirstEF_LMS.Controllers
                 int? sectionid = id;
                 if (id == null)
                 {
-                    var student_Assignment = db.Student_Assignment.Include(s => s.Assignment.Section.Course).Include(s => s.Assignment).Include(s => s.Section).Include(s => s.Student).Where(s => s.studentID == sid);
+                    var student_Assignment = db.StudentAssignments.Include(s => s.Assignment.Section.Course).Include(s => s.Assignment).Include(s => s.Section).Include(s => s.Student).Where(s => s.studentID == sid);
                     return View(student_Assignment.ToList());
                 }
                 else
                 {
-                    var student_Assignment = db.Student_Assignment.Include(s => s.Assignment.Section.Course).Include(s => s.Assignment).Include(s => s.Section).Include(s => s.Student).Where(s => s.studentID == sid && s.section_id == sectionid);
+                    var student_Assignment = db.StudentAssignments.Include(s => s.Assignment.Section.Course).Include(s => s.Assignment).Include(s => s.Section).Include(s => s.Student).Where(s => s.studentID == sid && s.section_id == sectionid);
                     return View(student_Assignment.ToList());
                 }
             }
