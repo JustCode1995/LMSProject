@@ -22,13 +22,13 @@ namespace DBFirstEF_LMS.Controllers
         }
 
         // GET: Registereds/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int sectionid, int studentid)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Registered registered = db.Registereds.Find(id, 10001);
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            Registered registered = db.Registereds.Find(studentid,sectionid);
             if (registered == null)
             {
                 return HttpNotFound();
@@ -64,13 +64,13 @@ namespace DBFirstEF_LMS.Controllers
         }
 
         // GET: Registereds/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int sectionid, int studentid)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Registered registered = db.Registereds.Find(id);
+            //if (sectionid == null && studentid == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            Registered registered = db.Registereds.Find(studentid,sectionid);
             if (registered == null)
             {
                 return HttpNotFound();
@@ -99,13 +99,13 @@ namespace DBFirstEF_LMS.Controllers
         }
 
         // GET: Registereds/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int sectionid, int studentid)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Registered registered = db.Registereds.Find(id);
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            Registered registered = db.Registereds.Find(studentid,sectionid);
             if (registered == null)
             {
                 return HttpNotFound();
@@ -116,9 +116,9 @@ namespace DBFirstEF_LMS.Controllers
         // POST: Registereds/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int sectionid, int studentid)
         {
-            Registered registered = db.Registereds.Find(id);
+            Registered registered = db.Registereds.Find(studentid,sectionid);
             db.Registereds.Remove(registered);
             db.SaveChanges();
             return RedirectToAction("Index");
