@@ -44,9 +44,16 @@
             @Html.DisplayFor(modelItem => item.DOB)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.StudentID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.StudentID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.StudentID })
+           @* @Html.ActionLink("Edit", "Edit", new { id = item.StudentID }) |*@
+            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Edit", new { id = item.StudentID })'">Edit</button>
+
+           @* @Html.ActionLink("Details", "Details", new { id = item.StudentID }) |*@
+
+            <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Details", new { id = item.StudentID })'">Details</button>
+
+            @*@Html.ActionLink("Delete", "Delete", new { id = item.StudentID })*@
+            <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", new { id = item.StudentID })'">Delete</button>
+
         </td>
     </tr>
 }
