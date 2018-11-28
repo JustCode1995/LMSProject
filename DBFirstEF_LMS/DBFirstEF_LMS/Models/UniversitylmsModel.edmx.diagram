@@ -24,11 +24,13 @@
         <AssociationConnector Association="LMSDBModel.FK__StaffLogi__staff__114A936A" />
         <AssociationConnector Association="LMSDBModel.FK__StudentLo__stude__0B91BA14" />
         <EntityTypeShape EntityType="LMSDBModel.Assignment" Width="1.5" PointX="8.25" PointY="9" />
-        <EntityTypeShape EntityType="LMSDBModel.Student_Assignment" Width="1.5" PointX="10.5" PointY="3" />
         <AssociationConnector Association="LMSDBModel.FK__Assignmen__secti__29221CFB" />
-        <AssociationConnector Association="LMSDBModel.FK__Student_A__assig__2CF2ADDF" />
-        <AssociationConnector Association="LMSDBModel.FK__Student_A__secti__2BFE89A6" />
-        <AssociationConnector Association="LMSDBModel.FK__Student_A__stude__2DE6D218" />
+        <EntityTypeShape EntityType="LMSDBModel.StudentAssignment" Width="1.5" PointX="10.5" PointY="3.125" />
+        <EntityTypeShape EntityType="LMSDBModel.sysdiagram" Width="1.5" PointX="10.375" PointY="10.75" />
+        <EntityTypeShape EntityType="LMSDBModel.database_firewall_rules" Width="1.5" PointX="5.375" PointY="11.75" />
+        <AssociationConnector Association="LMSDBModel.FK__Student_A__assig__2CF2ADDF1" />
+        <AssociationConnector Association="LMSDBModel.FK__StudentAs__secti__4B7734FF" />
+        <AssociationConnector Association="LMSDBModel.FK__StudentAs__stude__4C6B5938" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
