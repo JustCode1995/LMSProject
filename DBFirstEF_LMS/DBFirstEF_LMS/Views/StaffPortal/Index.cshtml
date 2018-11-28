@@ -11,12 +11,16 @@
 <h3>Student Accounts</h3>
 <div>
     @Html.ActionLink("Add New Student", "Create", "Students") <br />
+    @Html.ActionLink("Create Login", "Create", "StudentLogins")<br />
+
     <!--
         @Html.ActionLink("Edit Existing Student", "Edit", "Students")<br />
         @Html.ActionLink("Delete Existing Student", "Delete", "Students")<br />
         @Html.ActionLink("View Student Details", "Details", "Students")<br />
     -->
     @Html.ActionLink("Manage Existing Students", "Index", "Students")<br />
+    @Html.ActionLink("Manage Existing Logins", "Index", "StudentLogins")<br />
+
 </div>
 <h3>Enrollment</h3>
 <div>
@@ -45,7 +49,10 @@
     @Html.ActionLink("Edit Enrollment", "Edit", "Sections")<br />
     @Html.ActionLink("Delete Course", "Delete", "Sections")<br />
          -->
+    @Html.ActionLink("Create Login", "Create", "StaffLogins")<br />
     @Html.ActionLink("View All Staff", "Index", "Staffs")<br />
+    @Html.ActionLink("Manage Login", "Index", "StaffLogins")<br />
+
 </div>
 
 
