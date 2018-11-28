@@ -252,6 +252,10 @@ namespace DBFirstEF_LMS.Controllers
                 {
                     gpa += 0.0;
                 }
+                /*else if (g.grade == null)
+                {
+                    count -= 1;
+                }*/
             }
 
             gpa = gpa / (count - 1);
