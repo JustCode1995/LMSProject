@@ -55,6 +55,7 @@
             </td>
             <td>
                 <a href="@Url.Action("Edit", "Assignments", new { id = item.assignment_id })">Edit</a> |
+                <a href="@Url.Action("Index", "Student_Assignments", new { id = item.assignment_id })">Edit</a>
                 @*@Html.ActionLink("Details", "Details", new { id = item.assignment_id }) |*@
                 <a href="@Url.Action("Delete", "Assignments", new { id = item.assignment_id })">Delete</a>
             </td>
