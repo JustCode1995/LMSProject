@@ -21,10 +21,23 @@
                     @Html.ActionLink("◮ Pyramid Student Management System ◭", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 </font>
             </div>
-          
+            <div class="navbar-right">
+                <font size="20">
+                    @Html.ActionLink("[ Logout ☒ ]", "Logout", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </font>
+            </div>
+
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav"></ul>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-1 col-md-10">
+            <br>
+            @Html.ActionLink("🏠 Student", "Index", "StudentPortal", null, new { @class = "btn btn-info btn-small" })
+            <br>
         </div>
     </div>
 
