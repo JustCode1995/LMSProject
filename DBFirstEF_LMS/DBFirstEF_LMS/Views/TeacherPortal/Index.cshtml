@@ -11,33 +11,47 @@
     <!--
     @Html.ActionLink("Add Assignment Student", "Create", "Assignments") <br />
 
+
+
         @Html.ActionLink("Edit Existing Student", "Edit", "Students")<br />
         @Html.ActionLink("Delete Existing Student", "Delete", "Students")<br />
         @Html.ActionLink("View Student Details", "Details", "Students")<br />
     -->
-    @Html.ActionLink("My Courses", "ShowTeacherClasses", "Staffs")<br />
+   @* @Html.ActionLink("My Courses", "ShowTeacherClasses", "Staffs")<br />*@
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("ShowTeacherClasses","Staffs")'">My Courses</button><br />
+
 </div>
 
 <h3>Student Assignment</h3>
+
 <div>
-    @Html.ActionLink("Add Student Assignment ", "Create", "Assignments") <br />
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Create","Assignments")'">Add Student Assignment</button><br/>
     <!--
+   
         @Html.ActionLink("Edit Existing Student", "Edit", "Students")<br />
         @Html.ActionLink("Delete Existing Student", "Delete", "Students")<br />
         @Html.ActionLink("View Student Details", "Details", "Students")<br />
     -->
-    @Html.ActionLink("Manage Existing Assignments", "Index", "Assignments")<br />
+    @*@Html.ActionLink("Manage Existing Assignments", "Index", "Assignments")<br />*@
+    <br />
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index","Assignments")'">Manage Existing Assignment</button><br/>
+
 </div>
 
 
 
 <h3>Student Submit Grade</h3>
 <div>
-    @Html.ActionLink("Add Student Grade", "Create", "Student_Assignment") <br />
+   @* @Html.ActionLink("Add Student Grade", "Create", "Student_Assignment") <br />*@
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Create","Student_Assignments")'">Add Student Grade</button><br />
+
     <!--
         @Html.ActionLink("Edit Existing Student", "Edit", "Students")<br />
         @Html.ActionLink("Delete Existing Student", "Delete", "Students")<br />
         @Html.ActionLink("View Student Details", "Details", "Students")<br />
     -->
-    @Html.ActionLink("Manage Existing Grades", "Index", "Student_Assignment")<br />
+    <br/>
+   @* @Html.ActionLink("Manage Existing Grades", "Index", "Student_Assignment")<br />*@
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index","Student_Assignments")'">Manage Student Grades</button><br />
+
 </div>
