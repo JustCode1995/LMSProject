@@ -8,50 +8,86 @@
 }
 
 <h2>Admin Portal</h2>
-<h3>Student Accounts</h3>
+<h3 >&#9656; Student Accounts</h3>
 <div>
-    @Html.ActionLink("Add New Student", "Create", "Students") <br />
-    @Html.ActionLink("Create Login", "Create", "StudentLogins")<br />
+    @*@Html.ActionLink("Add New Student", "Create", "Students") <br />*@
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Creates","Students")'">Add New Student</button><br />
+    <br/>
+   @* @Html.ActionLink("Create Login", "Create", "StudentLogins")<br />*@
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Creates", "StudentLogins")'">Create Login</button><br />
+    <br />
 
     <!--
         @Html.ActionLink("Edit Existing Student", "Edit", "Students")<br />
+
+
         @Html.ActionLink("Delete Existing Student", "Delete", "Students")<br />
         @Html.ActionLink("View Student Details", "Details", "Students")<br />
     -->
-    @Html.ActionLink("Manage Existing Students", "Index", "Students")<br />
-    @Html.ActionLink("Manage Existing Logins", "Index", "StudentLogins")<br />
-
+   @* @Html.ActionLink("Manage Existing Students", "Index", "Students")<br />*@
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Students")'">Manage Existing Students</button><br />
+    <br/>
+   @* @Html.ActionLink("Manage Existing Logins", "Index", "StudentLogins")<br />*@
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "StudentLogins")'">Manage Existing Logins</button><br />
+    <br />
 </div>
-<h3>Enrollment</h3>
+<h3>&#9656; Enrollment</h3>
 <div>
-    @Html.ActionLink("Enroll Into Classs", "Create", "Registereds") <br />
+    @*@Html.ActionLink("Enroll Into Classs", "Create", "Registereds") <br />*@
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Registereds")'">Enroll Into Classs</button><br />
+    <br />
+
     <!--
     @Html.ActionLink("Edit Enrollment", "Edit", "Registereds")<br />
     @Html.ActionLink("Drop Student from class", "Delete", "Registereds")<br />
     @Html.ActionLink("View Enrollment Details", "Details", "Registereds")<br />
             -->
-    @Html.ActionLink("Manage Exisiting Enrollments", "Index", "Registereds")<br />
+   @* @Html.ActionLink("Manage Exisiting Enrollments", "Index", "Registereds")<br />*@
+
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Registereds")'">Manage Exisiting Enrollments</button><br />
+    <br />
 
 </div>
-<h3>Courses</h3>
+<h3>&#9656; Courses</h3>
 <div>
-    @Html.ActionLink("Offer New Course", "Create", "Sections") <br />
+   @* @Html.ActionLink("Offer New Course", "Create", "Sections") <br />*@
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Sections")'">Offer New Course</button><br />
+    <br />
+
     <!--
     @Html.ActionLink("Edit Enrollment", "Edit", "Sections")<br />
     @Html.ActionLink("Delete Course", "Delete", "Sections")<br />
          -->
-    @Html.ActionLink("View All Enrollments", "Index", "Sections")<br />
+    @*@Html.ActionLink("View All Enrollments", "Index", "Sections")<br />*@
+
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Sections")'">View All Enrollments</button><br />
+    <br />
 </div>
-<h3>Staff Members</h3>
+<h3>&#9656; Staff Members</h3>
 <div>
-    @Html.ActionLink("New Staff", "Create", "Staffs") <br />
+    @*@Html.ActionLink("New Staff", "Create", "Staffs") <br />*@
+
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Staffs")'">New Staf</button><br />
+    <br />
+
     <!--
     @Html.ActionLink("Edit Enrollment", "Edit", "Sections")<br />
     @Html.ActionLink("Delete Course", "Delete", "Sections")<br />
          -->
-    @Html.ActionLink("Create Login", "Create", "StaffLogins")<br />
-    @Html.ActionLink("View All Staff", "Index", "Staffs")<br />
-    @Html.ActionLink("Manage Login", "Index", "StaffLogins")<br />
+    @*@Html.ActionLink("Create Login", "Create", "StaffLogins")<br />*@
+
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Create", "StaffLogins")'">Create Login</button><br />
+    <br />
+
+    @*@Html.ActionLink("View All Staff", "Index", "Staffs")<br />*@
+
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Staffs")'">View All Staff</button><br />
+    <br />
+
+   @* @Html.ActionLink("Manage Login", "Index", "StaffLogins")<br />*@
+
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "StaffLogins")'">Manage Login</button><br />
+    <br />
 
 </div>
 

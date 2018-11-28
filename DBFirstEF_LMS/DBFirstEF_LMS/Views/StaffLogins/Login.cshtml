@@ -3,31 +3,34 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Login</h2>
-<br /><br />
-@using (Html.BeginForm("Login", "StaffLogins", FormMethod.Post))
-{
-    <table class="table-responsive">
-        <tr>
-            <td>
-                @Html.Label("Staff ID: ")
-            </td>
-            <td>
-                <input type="text" name="staffID" id="staffID" />
-            </td>
-        </tr>
+<h2>Staff Login</h2>
+<div class="body-content">
 
-        <tr>
-            <td>
-                @Html.Label("Password: ")
-            </td>
-            <td>
-                <input type="password" name="staffPass" id="staffPass" />
-            </td>
-        </tr>
-    </table>
+    <br /><br />
+    @using (Html.BeginForm("Login", "StaffLogins", FormMethod.Post))
+    {
+        <table class="table-responsive">
+            <tr>
+                <td>
+                    @Html.Label("Staff ID: ")
+                </td>
+                <td>
+                    <input type="text" name="staffID" id="staffID" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.Label("Password: ")
+                </td>
+                <td>
+                    <input type="password" name="staffPass" id="staffPass" />
+                </td>
+            </tr>
+        </table>
 
 
-    <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary">Login</button>
 
-}
+    }
+</div>

@@ -255,13 +255,7 @@
     <Content Include="Views\Staffs\Index.cshtml" />
     <Content Include="Views\TeacherPortal\Index.cshtml" />
     <Content Include="Views\Students\ShowGPA.cshtml" />
-    <Content Include="Views\Student_Assignment\Create.cshtml" />
-    <Content Include="Views\Student_Assignment\Delete.cshtml" />
-    <Content Include="Views\Student_Assignment\Details.cshtml" />
-    <Content Include="Views\Student_Assignment\Edit.cshtml" />
-    <Content Include="Views\Student_Assignment\Index.cshtml" />
     <Content Include="Views\Students\StudentClass.cshtml" />
-    <Content Include="Views\Student_Assignment\ClassDetails.cshtml" />
     <Content Include="Views\Assignments\Create.cshtml" />
     <Content Include="Views\Assignments\Delete.cshtml" />
     <Content Include="Views\Assignments\Details.cshtml" />
@@ -272,6 +266,11 @@
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_LayoutStudent.cshtml" />
     <Content Include="Views\Shared\_LayoutTeacher.cshtml" />
+    <Content Include="Views\Student_Assignment\Create.cshtml" />
+    <Content Include="Views\Student_Assignment\Delete.cshtml" />
+    <Content Include="Views\Student_Assignment\Details.cshtml" />
+    <Content Include="Views\Student_Assignment\Edit.cshtml" />
+    <Content Include="Views\Student_Assignment\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
