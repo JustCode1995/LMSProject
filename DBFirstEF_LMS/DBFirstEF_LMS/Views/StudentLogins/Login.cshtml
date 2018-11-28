@@ -9,6 +9,8 @@
     @ViewBag.LoginSuccess
     <br /><br />
     @using (Html.BeginForm("Login", "StudentLogins", FormMethod.Post))
+
+
     {
         <table class="table-responsive">
             <tr>
@@ -28,7 +30,10 @@
                 </td>
             </tr>
         </table>
-        <input type="submit" value="Login" />
-    }
 
-</div>
+
+                <button type="submit" class="btn btn-primary">Login</button>
+
+    }
+    
+        </div>
