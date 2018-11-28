@@ -14,8 +14,8 @@
             <tr>
                 @*data-href="@Url.Action("StudentClass","Students", new { id = Convert.ToInt32(@c.section_id) })">*@
             <td>
-                @c.course_name @c.course_id , @c.day_of_week @c.start_time - @c.end_time @c.section_id
-                @*<a href="@Url.Action("StudentClass","Students", new { id = Convert.ToInt32(@c.section_id) })">@c.course_name @c.course_id , @c.day_of_week @c.start_time - @c.end_time @c.section_id</a>*@
+                @*@c.course_name @c.course_id , @c.day_of_week @c.start_time - @c.end_time @c.section_id*@
+                <a href="@Url.Action("StaffClass","Staffs", new { id = Convert.ToInt32(@c.section_id) })">@c.course_name @c.course_id , @c.day_of_week @c.start_time - @c.end_time @c.section_id</a>
             </td>
         </tr>
     }
