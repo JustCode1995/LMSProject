@@ -41,6 +41,7 @@ namespace DBFirstEF_LMS
         // GET: Staffs/Create
         public ActionResult Create()
         {
+            ViewBag.sid = db.Staffs.Select(s => s.staff_id).Max() + 1;
             ViewBag.dept_id = new SelectList(db.Departments, "dept_id", "dept_name");
             ViewBag.staff_id = new SelectList(db.StaffLogins, "staff_id", "staff_pwd");
             return View();
