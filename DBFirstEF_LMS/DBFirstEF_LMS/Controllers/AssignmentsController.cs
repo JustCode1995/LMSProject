@@ -45,6 +45,10 @@ namespace DBFirstEF_LMS.Controllers
 
         public ActionResult Create(int? id)
         {
+            var maxID = db.Assignments.Select(a => a.assignment_id).Max();
+            maxID++;
+            ViewBag.asgnid = maxID;
+
             ViewBag.section_id = new SelectList(db.Sections);
             if (id == null || (id.ToString().Length < 1))
             {                

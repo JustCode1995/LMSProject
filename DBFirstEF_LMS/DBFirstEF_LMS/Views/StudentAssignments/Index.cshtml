@@ -13,16 +13,22 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.grade)
+            Grade
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Assignment.assignment_name)
+            Assignment Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Section.day_of_week)
+            Course and Section ID
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Student.Fname)
+            Student ID
+        </th>
+        <th>
+            Student First Name
+        </th>
+        <th>
+            Student Last Name
         </th>
         <th></th>
     </tr>
@@ -39,10 +45,16 @@
             @Html.DisplayFor(modelItem => item.Section.Course.course_name)  @Html.DisplayFor(modelItem => item.Section.section_id)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Student.StudentID)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Student.Fname)
         </td>
         <td>
-            @Html.ActionLink("Edit student grade", "Edit", new { secid = item.section_id, aid = item.assignment_id, sid = item.studentID  }) |
+            @Html.DisplayFor(modelItem => item.Student.Lname)
+        </td>
+        <td>
+            @Html.ActionLink("Edit Grade", "Edit", new { secid = item.section_id, aid = item.assignment_id, sid = item.studentID })
             @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
         </td>
