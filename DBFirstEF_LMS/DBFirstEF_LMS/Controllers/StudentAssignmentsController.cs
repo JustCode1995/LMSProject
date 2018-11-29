@@ -15,10 +15,46 @@ namespace DBFirstEF_LMS.Controllers
         private LMSDBEntities1 db = new LMSDBEntities1();
 
         // GET: StudentAssignments
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            var studentAssignments = db.StudentAssignments.Include(s => s.Assignment).Include(s => s.Section).Include(s => s.Student);
-            return View(studentAssignments.ToList());
+            int? sid = Convert.ToInt32(Session["sv_studentLogin"]);
+            int? tid = Convert.ToInt32(Session["sv_staffLogin"]);
+            int? asgnid = id;
+            if (sid == null || sid == 0)
+            {
+                if(tid == null || tid ==0)
+                {
+                    return View();
+                }
+                else
+                {
+                    if (asgnid == null || asgnid == 0)
+                    {
+                        var studentAssignments = db.StudentAssignments.Include(s => s.Assignment).Include(s => s.Section).Include(s => s.Student).Where(s => s.Section.teacher_id == tid);
+                        return View(studentAssignments.ToList());
+                    }
+                    else
+                    {
+                        var studentAssignments = db.StudentAssignments.Include(s => s.Assignment).Include(s => s.Section).Include(s => s.Student).Where(s => s.Section.teacher_id == tid && s.assignment_id == asgnid);
+                        return View(studentAssignments.ToList());
+                    }                    
+                }
+            }
+            else
+            {
+                if(asgnid == null || asgnid == 0)
+                {
+                    var studentAssignments = db.StudentAssignments.Include(s => s.Assignment).Include(s => s.Section).Include(s => s.Student).Where(s => s.studentID == sid);
+                    return View(studentAssignments.ToList());
+                }
+                else
+                {
+                    var studentAssignments = db.StudentAssignments.Include(s => s.Assignment).Include(s => s.Section).Include(s => s.Student).Where(s => s.studentID == sid && s.assignment_id == asgnid);
+                    return View(studentAssignments.ToList());
+                }
+            }
+            //var studentAssignments = db.StudentAssignments.Include(s => s.Assignment).Include(s => s.Section).Include(s => s.Student);
+            //return View(studentAssignments.ToList());
         }
 
         // GET: StudentAssignments/Details/5

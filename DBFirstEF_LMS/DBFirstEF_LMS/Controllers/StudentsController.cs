@@ -170,8 +170,7 @@ namespace DBFirstEF_LMS.Controllers
 
                 // create dynamic model to fix lack of reflection in anonymous type
                 List <ExpandoObject> classList = new List<ExpandoObject>();
-                List<Object> courseList = new List<Object>();
-                List<Object> listview = new List<Object>();
+                //List<Object> courseList = new List<Object>();
                 foreach (var v in q)
                 {
                     IDictionary<string, object> itemExpando = new ExpandoObject();
@@ -180,7 +179,7 @@ namespace DBFirstEF_LMS.Controllers
                         itemExpando.Add(prop.Name, prop.GetValue(v));
                     }
                     classList.Add(itemExpando as ExpandoObject);
-                    courseList.Add(v);
+                   // courseList.Add(v);
                 }
 
                 dynamic model = new ExpandoObject();
