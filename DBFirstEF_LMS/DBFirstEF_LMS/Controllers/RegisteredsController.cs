@@ -39,7 +39,7 @@ namespace DBFirstEF_LMS.Controllers
         // GET: Registereds/Create
         public ActionResult Create()
         {
-            ViewBag.section_id = new SelectList(db.Sections, "section_id", "day_of_week");
+            ViewBag.section_id = new SelectList(db.Sections, "section_id", "section_id");
             ViewBag.student_id = new SelectList(db.Students, "StudentID", "Fname");
             return View();
         }
