@@ -39,6 +39,7 @@ namespace DBFirstEF_LMS.Controllers
         // GET: Courses/Create
         public ActionResult Create()
         {
+            ViewBag.cseid = (db.Courses.Select(c => c.course_id).Max()) + 1;
             ViewBag.dept_id = new SelectList(db.Departments, "dept_id", "dept_name");
             return View();
         }
