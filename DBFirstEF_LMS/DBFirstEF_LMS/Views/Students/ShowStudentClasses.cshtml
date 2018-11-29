@@ -7,17 +7,18 @@
 }
 <div class="body-content">
     <h2>Student records for: @ViewBag.studentName</h2>
-    <h3>Class List</h3>
+    <h3>Class List:</h3>
     <table class="table-hover">
         @foreach (var c in Model.listofclasses)
         {
-            <tr >@*data-href="@Url.Action("StudentClass","Students", new { id = Convert.ToInt32(@c.section_id) })">*@
-                <td>
-                    @*@c.course_name @c.course_id , @c.day_of_week @c.start_time - @c.end_time @c.section_id*@
-                    <a href="@Url.Action("StudentClass","Students", new { id = Convert.ToInt32(@c.section_id) })">@c.course_name @c.course_id | @c.day_of_week | @c.start_time - @c.end_time | @c.section_id</a>
-                </td>
-            </tr>
-        }
-        
+            <tr>
+                @*data-href="@Url.Action("StudentClass","Students", new { id = Convert.ToInt32(@c.section_id) })">*@
+            <td>
+                @*@c.course_name @c.course_id , @c.day_of_week @c.start_time - @c.end_time @c.section_id*@
+                <a href="@Url.Action("StudentClass","Students", new { id = Convert.ToInt32(@c.section_id) })">@c.course_name @c.course_id | @c.day_of_week | @c.start_time - @c.end_time | @c.section_id</a>
+            </td>
+        </tr>
+    }
+
     </table>
 </div>

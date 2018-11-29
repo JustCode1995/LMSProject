@@ -18,15 +18,15 @@
         <th>
             Course
         </th>
-        <th>
+        @*<th>
             Professor ID
-        </th>
+        </th>*@
         <th>
-            First Name
+            Professor
         </th>
-        <th>
-            Last Name
-        </th>
+        @*<th>
+             
+        </th>*@
         <th>
             Day of the Week
         </th>
@@ -49,15 +49,16 @@
         <td>
             @Html.DisplayFor(modelItem => item.Course.course_name)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Staff.staff_id)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Staff.first_name)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Staff.last_name)
         </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Staff.last_name)
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.day_of_week)
         </td>
@@ -69,9 +70,12 @@
         </td>
 
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.section_id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.section_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.section_id })
+            @*@Html.ActionLink("Edit", "Edit", new { id = item.section_id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.section_id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.section_id })*@
+            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Edit", new { id = item.section_id })'">Edit</button>
+            <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Details", new { id = item.section_id })'">Details</button>
+            <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", new { id = item.section_id })'">Delete</button>
         </td>
     </tr>
 }

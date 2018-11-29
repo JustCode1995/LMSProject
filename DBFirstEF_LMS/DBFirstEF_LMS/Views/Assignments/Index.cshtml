@@ -58,9 +58,12 @@
         </td>
 
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.assignment_id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.assignment_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.assignment_id })
+            @*@Html.ActionLink("Edit", "Edit", new { id = item.assignment_id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.assignment_id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.assignment_id })*@
+            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Edit", new { id = item.assignment_id })'">Edit</button>
+            <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Details", new { id = item.assignment_id })'">Details</button>
+            <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", new { id = item.assignment_id })'">Delete</button>
         </td>
     </tr>
 }
