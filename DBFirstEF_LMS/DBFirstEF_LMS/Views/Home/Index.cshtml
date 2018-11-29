@@ -3,11 +3,9 @@
 @{
     ViewBag.Title = "Index";
 }
-
 <style>
     .img {
      
-        border: 2px solid #fff;
         box-shadow: 10px 10px 5px #ccc;
         -moz-box-shadow: 10px 10px 5px #ccc;
         -webkit-box-shadow: 10px 10px 5px #ccc;
@@ -22,13 +20,15 @@
         <tbody>
             <tr>
                 
-                    <td style="width: 124px;"><div class="img"><img src="https://images.pexels.com/photos/1438081/pexels-photo-1438081.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=350" alt="" width="375" height="250" /></td></div>
-                    <td style="width: 266.778px;"><div class="img"><img src="https://t4.ftcdn.net/jpg/00/01/73/49/240_F_1734975_EAYQaog4nfYZ5yLMNOum9W3vIohZ5S.jpg" alt="" width="375" height="250" /></td>
+                <td style="width: 124px;"><div class="img" > <img src="https://images.pexels.com/photos/1438081/pexels-photo-1438081.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=350" alt="" width="375" height="250" /></div></td>
+                
+                    <td style="width: 266.778px;"><div class="img" ><img src="https://t4.ftcdn.net/jpg/00/01/73/49/240_F_1734975_EAYQaog4nfYZ5yLMNOum9W3vIohZ5S.jpg" alt="" width="375" height="250" /></div></td>
             </tr>
             <tr>
                 <td style="width: 124px;">
                     <br />
                     <p style="text-align: center;"> @Html.ActionLink("Student Login", "Login", "StudentLogins", null, new { @class = "btn btn-primary btn-small" }) </p>
+                
                 </td>
                
                 <td style="width: 266.778px;"> <p style="text-align: center;"><br/> @Html.ActionLink("Employee Login", "Login", "StaffLogins", null, new { @class = "btn btn-primary btn-small" }) </p></td>
