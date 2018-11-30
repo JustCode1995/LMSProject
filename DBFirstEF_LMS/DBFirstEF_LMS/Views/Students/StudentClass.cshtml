@@ -4,18 +4,18 @@
     ViewBag.Title = "StudentClass";
     Layout = "~/Views/Shared/_LayoutStudent.cshtml";
 }
-<h2></h2>
+<h2>Class Assignment Grades</h2>
 @ViewBag.Message
 <table class="table">
     <tr>
         <th>
-           Course
+            Course
         </th>
         <th>
-           Assignment Name
+            Assignment Name
         </th>
         <th>
-           Grade
+            Grade
         </th>
 
         <th></th>
@@ -23,24 +23,24 @@
 
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Section.Course.course_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Assignment.assignment_name)
-        </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Section.Course.course_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assignment.assignment_name)
+            </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.grade)
-        </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.grade)
+            </td>
 
-        <td>
-            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-        </td>
-    </tr>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
     }
 
 </table>
