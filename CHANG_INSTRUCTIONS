@@ -1,0 +1,6 @@
+UHD Firewall blocks the connection from the application to Azure. 
+Needs to be run on a personal network or wifi hotspot for.
+
+In order to run the "DBFirstEF_LMS.sln" file,
+
+Login credentials for testing are located in "SampleLoginCredentials.txt"
