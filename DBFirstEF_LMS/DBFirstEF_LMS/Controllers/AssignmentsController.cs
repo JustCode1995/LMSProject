@@ -95,7 +95,7 @@ namespace DBFirstEF_LMS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.section_id = new SelectList(db.Sections, "section_id", "day_of_week", assignment.section_id);
+            ViewBag.section_id = new SelectList(db.Sections, "section_id", "section_id", assignment.section_id);
             return View(assignment);
         }
 

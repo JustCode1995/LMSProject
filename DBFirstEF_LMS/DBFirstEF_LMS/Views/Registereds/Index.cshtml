@@ -68,7 +68,7 @@
         @Html.ActionLink("Unregister", "Delete", new { sectionid = item.section_id, studentid = item.student_id })*@
             <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Edit", new { sectionid = item.section_id, studentid = item.student_id })'">Edit</button>
             <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Details", new { sectionid = item.section_id, studentid = item.student_id })'">Details</button>
-            <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", new { sectionid = item.section_id, studentid = item.student_id })'">Delete</button>
+            <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", new { sectionid = item.section_id, studentid = item.student_id })'">Unregister</button>
         </td>
     </tr>
 }

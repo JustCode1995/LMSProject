@@ -39,6 +39,7 @@ namespace DBFirstEF_LMS.Controllers
         // GET: Sections/Create
         public ActionResult Create()
         {
+            ViewBag.secid = db.Sections.Select(s => s.section_id).Max() + 1;
             ViewBag.course_id = new SelectList(db.Courses, "course_id", "course_name");
             ViewBag.semester_id = new SelectList(db.Semesters, "sem_id", "sem_desc");
             ViewBag.teacher_id = new SelectList(db.Staffs, "staff_id", "first_name");

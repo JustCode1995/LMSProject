@@ -40,6 +40,7 @@ namespace DBFirstEF_LMS.Controllers
         // GET: Students/Create
         public ActionResult Create()
         {
+            ViewBag.sid = db.Students.Select(s => s.StudentID).Max() + 1;
             return View();
         }
 
